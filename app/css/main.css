@@ -1,0 +1,41 @@
+body{
+	background:black;
+	color:#000;
+}
+
+.container{}
+#canvas-wrapper{
+}
+.wrapper-wrapper{
+    margin:0;
+    padding:0;
+}
+
+
+.heart-wrapper{
+	display:none;
+}
+.keys-wrapper{
+	display:none;
+}
+.heart{
+fill: #d9534f;
+stroke: #ffffff;
+stroke-dasharray: 0,0;
+}
+.key{
+fill: #f0ad4e;
+stroke: #ffffff;
+stroke-dasharray: 0,0;
+}
+
+
+.dialogue-wrapper{
+	font-size:2em;
+}
+.dialogue-wrapper .princess{
+	color:#f49ac1;
+}
+.dialogue-wrapper .hero{
+	color:#6dcff6;
+}

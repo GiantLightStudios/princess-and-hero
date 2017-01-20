@@ -1,0 +1,155 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-lg-7 col-md-9 col-sm-12 col-lg-push-1 col-md-push-0 col-sm-push-0 ">
+                    <div id="canvas-wrapper"></div>
+                </div>
+                <div id="hud-wrapper" class="col-lg-3 col-md-3 col-sm-12 col-lg-push-1 col-md-push-0 col-sm-push-0 ">
+                    <h1 class="h1">HUD</h1>
+                    <div class="hp">
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+        <script id="HUDTemplate" type="text/template">
+            <br />
+            
+            <!-- Hearts display -->
+            <div class="heart-wrapper">
+            <% for(var i = 0;i<player.hp;i++){ %>
+            
+                <strong class="heart">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="32" height="32" viewBox="0 0 491 427">
+
+                      <path d="M244.918,93.339 C181.489,-54.724 1.191,-20.177 0.005,151.671 C-0.652,246.053 85.858,281.333 143.458,319.064 C199.311,355.656 239.063,405.712 245.292,427.021 C250.625,406.143 294.902,354.670 346.604,318.041 C403.137,277.989 490.715,245.026 490.058,150.646 C488.865,-21.629 305.431,-48.818 244.918,93.339 Z" fill-rule="evenodd"/>
+                    </svg>
+                </strong>
+            <% } %>
+            </div>
+
+
+
+
+            <!-- Key Display -->
+            <div class="keys-wrapper">
+            <% for(var i = 0;i<player.keys;i++){ %>
+            
+                <strong class="key">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="32" height="32" viewBox="0 0 487 125">
+
+                      <path d="M486.868,117.332 C486.868,117.332 486.784,47.577 486.784,47.577 C486.784,47.577 122.421,47.577 122.421,47.577 C115.896,20.306 91.396,0.005 62.096,0.005 C27.806,0.005 0.007,27.777 0.007,62.031 C0.007,96.285 27.806,124.058 62.096,124.058 C91.396,124.058 115.896,103.756 122.421,76.483 C122.421,76.483 403.067,76.483 403.067,76.483 C403.067,76.483 403.038,117.332 403.038,117.332 C403.038,117.332 423.602,117.332 423.602,117.332 C423.602,117.332 423.602,85.730 423.602,85.730 C423.602,85.730 434.669,85.730 434.669,85.730 C434.669,85.730 434.669,117.332 434.669,117.332 C434.669,117.332 455.236,117.332 455.236,117.332 C455.236,117.332 455.236,85.730 455.236,85.730 C455.236,85.730 466.304,85.730 466.304,85.730 C466.304,85.730 466.304,117.332 466.304,117.332 C466.304,117.332 486.868,117.332 486.868,117.332 ZM62.096,105.266 C38.194,105.266 18.818,85.907 18.818,62.031 C18.818,38.152 38.194,18.791 62.096,18.791 C86.005,18.791 105.377,38.152 105.377,62.031 C105.377,85.907 86.005,105.266 62.096,105.266 Z" fill-rule="evenodd"/>
+                    </svg>
+
+                </strong>
+            <% } %>
+
+            </div>
+
+            <% if(board_data && board_data.dialogue){ %>
+
+            <div class="dialogue-wrapper">
+            <% for(var i = 0;i<board_data.dialogue.length;i++){ %>
+                <p class="<%= board_data.dialogue[i].speaker %>">
+                <%= board_data.dialogue[i].text %>
+                </p>
+            <% } %>
+
+            </div>
+            <% } %>
+
+
+            <div>
+                <button class="btn btn-danger reset">RESET</button>
+                <button class="btn back">&lt; Back</button>
+                <button class="btn next">Next &gt;</button>
+            </div>
+        </script>
+
+
+
+
+
+
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+        <!-- Bootstrap: Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        <script src="js/vendor/underscore-min.js"></script>
+        <script src="js/vendor/backbone-min.js"></script>
+        <script src="js/vendor/template_from_url_mixin.js"></script>
+        <script src="js/vendor/phaser.min.js"></script>
+        <script src="js/vendor/phaser-swipe-master/swipe.js"></script>
+
+        <script src="js/config.js"></script>
+        <script src="js/levels/levels.js"></script>
+        <script src="js/data/pickup_details.js"></script>
+        <script src="js/data/actor_details.js"></script>
+        <script src="js/data/prop_details.js"></script>
+        <script src="js/data/tile_details.js"></script>
+
+        <script src="js/models/actor_model.js"></script>
+        <script src="js/models/board_model.js"></script>
+        <script src="js/models/game_model.js"></script>
+        <script src="js/views/hud-view.js"></script>
+
+
+
+        <script src="js/states/game_state.js"></script>
+        
+        <script src="js/entities/tile.js"></script>
+        <script src="js/entities/actor.js"></script>
+        <script src="js/entities/pickup.js"></script>
+        <script src="js/entities/prop.js"></script>
+        <script src="js/entities/eye.js"></script>
+        <script src="js/entities/board.js"></script>
+        <script src="js/entities/hud.js"></script>
+
+
+        <script src="js/dungeon_dash.js"></script>
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>
