@@ -566,25 +566,49 @@ var princessTorture02 = {
 	
 }
 
+
+var princessTorture02FlippedIsh = {
+	height: 16,
+	width: 16,
+	tile_data:
+	
+		"wwwwwwwwwwwwwwww" +
+		"w       w      w" +
+		"w w          w w" +
+		"w             kw" +
+		"wp            pw" +
+		"ww     @      ww" +
+		"wwwwwwwdwwwwwwww" +
+		"wp     %      pw" +
+		"w  www    www  w" +
+		"w              w" +
+		"w   www wwww   w" +
+		"w w     w    w w" +
+		"w ww    w   ww w" +
+		"w              w" +
+		"w    w    w    w" +
+		"wwwwwwwwwwwwwwww"
+}
+
 var princessTorture03 = {
 	height: 16,
 	width: 16,
 	tile_data:
 		"wwwwwwwwwwwwwwww" +
+		"wp      w      w" +
 		"w              w" +
-		"w              w" +
-		"w      k       w" +
-		"w      @       w" +
+		"w             kw" +
+		"w     @        w" +
 		"wwwwwwwdwwwwwwww" +
+		"ww             w" +
 		"w              w" +
-		"w      w       w" +
-		"w      w       w" +
-		"w      p       w" +
-		"w   p      p   w" +
+		"w              w" +
+		"w              w" +
+		"wp            pw" +
 		"w      %       w" +
 		"w              w" +
-		"wwww        wwww" +
-		"wwww   w    wwww" +
+		"w              w" +
+		"w             ww" +
 		"wwwwwwwwwwwwwwww"
 	
 }
@@ -756,6 +780,8 @@ DungeonDashLevels.push(keyWithMobs2);
 DungeonDashLevels.push(princessTorture00);
 DungeonDashLevels.push(princessTorture01);
 DungeonDashLevels.push(princessTorture02);
+DungeonDashLevels.push(princessTorture02FlippedIsh);
+// DungeonDashLevels.push(princessTorture03);
 //end of act 2
 
 
