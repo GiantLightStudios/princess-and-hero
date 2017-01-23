@@ -24,7 +24,10 @@ DungeonDashGame.GameState.prototype  = {
 		this.game.load.atlas('all_sprites', 'img/game_sprites/all_sprites.png', 'img/game_sprites/all_sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
 
 		//audio
-		this.game.load.audio("swish", "audio/sfx/75534__ra-gun__swish-bamboo-pole-w-insect-net-02.wav")
+		this.game.load.audio("swish", "audio/sfx/75534__ra-gun__swish-bamboo-pole-w-insect-net-02.wav");
+		
+		this.game.load.audio("bg-music", "audio/music/Lancefield_-_Love_Is.mp3");
+
 
 	},
 	create: function(){
@@ -65,6 +68,12 @@ DungeonDashGame.GameState.prototype  = {
 		
 
 		this.swipe = new Swipe(this.game);
+
+
+		this.bg_music = this.game.add.audio("bg-music");
+		this.bg_music.loop = true;
+		this.bg_music.play();
+
 	},
 
 	update: function(){

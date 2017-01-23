@@ -566,32 +566,6 @@ var princessTorture02 = {
 	
 }
 
-//This appears too hard. 
-//Players give up here. 
-//Need something less intimidating to look at.
-var princessTorture02FlippedIsh = {
-	height: 16,
-	width: 16,
-	tile_data:
-	
-		"wwwwwwwwwwwwwwww" +
-		"w       w      w" +
-		"w w          w w" +
-		"w             kw" +
-		"wp            pw" +
-		"ww     @      ww" +
-		"wwwwwwwdwwwwwwww" +
-		"wp     %      pw" +
-		"w  w        w  w" +
-		"w              w" +
-		"w   www wwww   w" +
-		"w w     w    w w" +
-		"w ww    w   ww w" +
-		"w              w" +
-		"w    w    w    w" +
-		"wwwwwwwwwwwwwwww"
-}
-
 var princessTorture03 = {
 	height: 16,
 	width: 16,
@@ -599,9 +573,9 @@ var princessTorture03 = {
 		"wwwwwwwwwwwwwwww" +
 		"wp    w        w" +
 		"w              w" +
+		"w              w" +
 		"w      @k      w" +
 		"wwwwwwwdwwwwwwww" +
-		"w              w" +
 		"w              w" +
 		"ww            ww" +
 		"w    wwwwww    w" +
@@ -614,6 +588,35 @@ var princessTorture03 = {
 		"wwwwwwwwwwwwwwww"
 	
 }
+
+
+//This appears too hard. 
+//Players give up here. 
+//Need something less intimidating to look at.
+var princessTorture02FlippedIsh = {
+	height: 16,
+	width: 16,
+	tile_data:
+	
+		"wwwwwwwwwwwwwwww" +
+		"wp      w     pw" +
+		"w        k     w" +
+		"ww     @      ww" +
+		"wwwwwwwdwwwwwwww" +
+		"wp     %      pw" +
+		"w              w" +
+		"w              w" +
+		"ww            ww" +
+		"ww    wwww    ww" +
+		"www          www" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w      ww      w" +
+		"wwwwwwwwwwwwwwww"
+}
+
+
 var princeTorture00 = {
 	height: 16,
 	width: 16,
@@ -976,8 +979,8 @@ DungeonDashLevels.push(keyWithMobs2);
 DungeonDashLevels.push(princessTorture00);
 DungeonDashLevels.push(princessTorture01);
 DungeonDashLevels.push(princessTorture02);
-DungeonDashLevels.push(princessTorture02FlippedIsh);
 DungeonDashLevels.push(princessTorture03);
+DungeonDashLevels.push(princessTorture02FlippedIsh);
 DungeonDashLevels.push(princeTorture00);
 DungeonDashLevels.push(BossFight02);
 //end of act 2
