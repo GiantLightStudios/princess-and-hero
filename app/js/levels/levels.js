@@ -566,7 +566,9 @@ var princessTorture02 = {
 	
 }
 
-
+//This appears too hard. 
+//Players give up here. 
+//Need something less intimidating to look at.
 var princessTorture02FlippedIsh = {
 	height: 16,
 	width: 16,
@@ -731,18 +733,10 @@ var JustMovers01 = {
 	
 }
 var JustMovers02 = {
-	height: 16,
+	height: 8,
 	width: 16,
 	tile_data:
 		"wwwwwwwwwwwwwwww" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
 		"w              w" +
 		"w              w" +
 		"w              w" +

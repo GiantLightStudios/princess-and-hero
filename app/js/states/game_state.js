@@ -22,6 +22,10 @@ DungeonDashGame.GameState.prototype  = {
 		// this.game.load.atlas('roguelikeitems', 'img/roguelikeitems/roguelikeitems.png', 'img/roguelikeitems/sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
 		// this.game.load.atlas('kenney_roguelike_characters', 'img/roguelike-characters-pack/Spritesheet/roguelikeChar_transparent.png', 'img/roguelike-characters-pack/Spritesheet/sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
 		this.game.load.atlas('all_sprites', 'img/game_sprites/all_sprites.png', 'img/game_sprites/all_sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
+
+		//audio
+		this.game.load.audio("swish", "audio/sfx/75534__ra-gun__swish-bamboo-pole-w-insect-net-02.wav")
+
 	},
 	create: function(){
 
@@ -191,7 +195,7 @@ DungeonDashGame.GameState.prototype  = {
 		this.game_model.set("current_board_index", index);
 		this.world.add(this.current_board);
 		this.updateHUD();
-		
+		this.resize();
 
 		this.current_board.player.actor_model.on("change", function(a, b, c){
 			that.current_board.princess.hp = that.current_board.player.hp;
@@ -228,6 +232,7 @@ DungeonDashGame.GameState.prototype  = {
 
 
 		var lGameScale=Math.round(10000 * Math.min(this.game.width/SAFE_ZONE_WIDTH, this.game.height / SAFE_ZONE_HEIGHT)) / 10000;
+		lGameScale *= 16/this.current_board.board_width;
 		this.game.global_scale = lGameScale;
 		this.world.scale.setTo (lGameScale,lGameScale);
 		this.world.x=(this.game.width-SAFE_ZONE_WIDTH*lGameScale)/2;

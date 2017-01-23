@@ -60,6 +60,8 @@ Actor.prototype.create = function() {
 	// this.dash_line = this.game.add.sprite(0,0,"triangle");
 	// this.dash_line.anchor.set(.5);
 	// this.addChild(this.dash_line);
+	this.move_sfx = this.game.add.audio("swish");
+
 
 	this.square = this.game.add.sprite(0,0, this.actor_type.atlas, this.actor_type.sprite_name);
 	this.square.scale.set(this.actor_type.sprite_scale);
@@ -197,6 +199,8 @@ Actor.prototype.slide = function(x_dir, y_dir){
 		if(target_block!=null){
 
 			// this.UpdateDashLine(this.current_tile, target_block);
+
+			this.move_sfx.play();
 
 			var move_tween = this.game.add.tween(this);
 			move_tween.to({x: target_block.x, y: target_block.y}, 100);
