@@ -21,7 +21,6 @@ DungeonDashGame.HudView = Backbone.View.extend({
 	},
 	render: function(){
 		this.$el.html();
-		console.log(this.options.gameState);
 		var html = this.hud_template({
 			"player": this.options.gameState.current_board.player.actor_model.toJSON(),
 			"board": this.options.gameState.current_board,

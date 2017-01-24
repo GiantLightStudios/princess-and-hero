@@ -32,12 +32,16 @@ Board = function(game, x, y, tile_scale, level_data_index){
 	this.create();
 	this.timer.start();
 
+
+
 }
 
 Board.prototype = Object.create(Phaser.Group.prototype);
 Board.prototype.constructor = Board;
 
 Board.prototype.create = function() { 
+	this.win_sfx = this.game.add.audio("win");
+
 	this.board_height = this.board_data.tile_data.length;
 	this.board_width = this.board_data.tile_data[0].length;
 	this.tile_sprite_size = 512; //todo: abstract this to read the actual sprite file size!
@@ -196,11 +200,15 @@ Board.prototype.create = function() {
 	}
 	this.bringToTop(this.player);
 	this.bringToTop(this.princess);
+	this.bringToTop(this.player.heart);
+	this.bringToTop(this.princess.heart);
+
 	this.player.eye.target = this.princess;
 	this.princess.eye.target = this.player;
 	if(this.boss){
 		this.boss.eye.target = this.player;
 	}
+
 
 
 
@@ -227,6 +235,10 @@ Board.prototype.GetRandomEmptyTile = function(num_attempts){
 }
 Board.prototype.slide = function(x_dir, y_dir){
 	var that = this;
+
+	if(this.numSlides != null && this.numSlides > 0){
+		return false;
+	}
 
 	var allActors = [];
 	allActors.push(this.player);
@@ -279,20 +291,30 @@ Board.prototype.slide = function(x_dir, y_dir){
 	// 	}
 
 
+	this.numSlides = sortedActors.length;
 
 	for(var i = 0;i<sortedActors.length;i++){
 		// sortedActors[i].slide(x_dir, y_dir);
 
-		var delay = 20*i;
+		var delay = 40*i;
 		var a = sortedActors[i];
 		(function(actor){
+			if(!actor.isDead){
+
 			that.timer.add(delay, function(){
-				actor.slide(x_dir, y_dir);
+				actor.slide(x_dir, y_dir, function(){
+					that.numSlides --;
+				});
 			}, that);
+			}
 		})(a);
 
 	}
-
+	that.CheckWin();
+	DungeonDashGame.wait(
+		function(){return that.numSlides==0 },
+		function(){that.CheckWin()}
+	);
 
 }
 
@@ -306,14 +328,32 @@ Board.prototype.GetTile = function(row, col){
 	return this.tiles[this.board_width * row + col];
 }
 
+Board.prototype.CheckWin = function(){
+	var that = this;
+	if(this.has_won == true && that.player.isDead == false && that.princess.isDead == false){
+		console.log(this.player.y, this.princess.y);
+		if(this.player.y>this.princess.y){
+			this.bringToTop(this.player);
+		}else{
+			this.bringToTop(this.princess);
+		}
+		that.player.showHeart();
+		that.princess.showHeart();
+		this.win_sfx.play();
+		this.timer.add(500, function(){
+			console.log("YAY");
+			that.board_model.set("win", true);
+		}, this);
+	}
+}
+
 Board.prototype.Win = function(){
 	var that = this;
 	that.player.canControl = false;
 	that.princess.canControl = false;
-	
-	this.timer.add(500, function(){
-		that.board_model.set("win", true);
-	}, this);
+	this.has_won = true;
+
+
 
 }
 Board.prototype.update = function() { 

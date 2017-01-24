@@ -23,20 +23,30 @@ DungeonDashGame.GameState.prototype  = {
 		// this.game.load.atlas('kenney_roguelike_characters', 'img/roguelike-characters-pack/Spritesheet/roguelikeChar_transparent.png', 'img/roguelike-characters-pack/Spritesheet/sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
 		this.game.load.atlas('all_sprites', 'img/game_sprites/all_sprites.png', 'img/game_sprites/all_sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
 
-		//audio
+		//sfx
 		this.game.load.audio("swish", "audio/sfx/75534__ra-gun__swish-bamboo-pole-w-insect-net-02.wav");
+		this.game.load.audio("win", "audio/sfx/171671__fins__success-1.wav");
+		this.game.load.audio("grunts", "audio/sfx/144907__sketchygio__male-grunts.mp3");
+		this.game.load.audio("uh-oh", "audio/sfx/144258__d-w__human-man-uh-oh.wav");
+		this.game.load.audio("oh-no", "audio/sfx/131407__ecfike__oh-no-2.wav");
 		
+		//music
 		this.game.load.audio("bg-music", "audio/music/Lancefield_-_Love_Is.mp3");
 
 
 	},
 	create: function(){
 
-
 		var that = this;
+		this.has_lost = false;
 		this.game.antialias = false;
 		this.cursors = this.game.input.keyboard.createCursorKeys();
 		this.moveClear = true;
+
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
+		// this.game.physics.arcade.gravity.y = 200;
+
+
 
 		// game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 		this.game.stage.backgroundColor = '#000';
@@ -71,16 +81,21 @@ DungeonDashGame.GameState.prototype  = {
 
 
 		this.bg_music = this.game.add.audio("bg-music");
+		this.bg_music.volume = .5;
 		this.bg_music.loop = true;
 		this.bg_music.play();
 
+		this.lose_sfx = this.game.add.audio("uh-oh");
+
+		this.timer = this.game.time.create(false);
+		this.timer.start();
 	},
 
 	update: function(){
 		var that = this;
 		
-		if(that.current_board.player.hp<=0){
-			that.transitionToLevel(that.current_board_index);
+		if(that.current_board.player.hp<=0 && !that.has_lost){
+			that.lose();
 		}
 
 		if(this.moveClear){
@@ -164,20 +179,27 @@ DungeonDashGame.GameState.prototype  = {
 		this.transitionToLevel(this.current_board_index);
 
 	},
-	transitionToLevel: function(index){
+	transitionToLevel: function(index, delay){
 		var that = this;
 		this.world.bringToTop(this.transitionCoverOut);
 
+		if(delay == null)
+			delay = 10;
 
-		this.outTween = this.game.add.tween(this.transitionCoverOut);
-		this.world.bringToTop(this.transitionCoverOut);
-		this.outTween.to({"alpha": 1}, 500);
+		that.timer.add(delay, function(){
+			that.outTween = that.game.add.tween(that.transitionCoverOut);
+			that.world.bringToTop(that.transitionCoverOut);
+			that.outTween.to({"alpha": 1}, 500);
 
-		this.outTween.onComplete.add(function(){
-			that.loadBoard(index);
-			that.game.tweens.remove(that.outTween);
+			that.outTween.onComplete.add(function(){
+				that.loadBoard(index);
+				that.game.tweens.remove(that.outTween);
+			});
+			that.outTween.start();
 		});
-		this.outTween.start();
+
+
+
 
 	},
 	up: function(){
@@ -229,6 +251,7 @@ DungeonDashGame.GameState.prototype  = {
 		this.inTween.onComplete.add(function(){
 			that.game.tweens.remove(that.inTween);
 		});
+		this.has_lost = false;
 		this.inTween.start();
 	},
 	updateHUD: function(a, b, c){
@@ -238,14 +261,24 @@ DungeonDashGame.GameState.prototype  = {
 		console.log("game_state.resize");
 
 
-
-
 		var lGameScale=Math.round(10000 * Math.min(this.game.width/SAFE_ZONE_WIDTH, this.game.height / SAFE_ZONE_HEIGHT)) / 10000;
 		lGameScale *= 16/this.current_board.board_width;
 		this.game.global_scale = lGameScale;
 		this.world.scale.setTo (lGameScale,lGameScale);
 		this.world.x=(this.game.width-SAFE_ZONE_WIDTH*lGameScale)/2;
 		this.world.y=(this.game.height-SAFE_ZONE_HEIGHT*lGameScale)/2;
+	},
+	lose: function(){
+		var that = this;
+		this.has_lost = true;
+		var delay = 500;
+		that.timer.add(delay, function(){
+
+			that.lose_sfx.play();
+			that.lose_sfx._sound.playbackRate.value = 2;
+			that.transitionToLevel(that.current_board_index, 300);
+		});
 	}
+
 
 }

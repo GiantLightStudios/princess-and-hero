@@ -5,7 +5,6 @@ Actor = function(game, x, y, tile_scale, a_type){
 
 	this.actor_type = null;
 	this.current_direction = new Phaser.Point(0, 0);
-	console.log(a_type);
 	switch(a_type){
 		case "@":
 			this.actor_type = ACTOR_TYPES.player;
@@ -46,6 +45,8 @@ Actor = function(game, x, y, tile_scale, a_type){
 	this.isDead = false;
 
 
+
+	this.anchor.setTo(.5, .5);
 	this.game.add.existing(this);
 	this.create();
 	this.timer = this.game.time.create(false);
@@ -58,15 +59,17 @@ Actor.prototype.constructor = Actor;
 Actor.prototype.create = function() { 
 	
 	// this.dash_line = this.game.add.sprite(0,0,"triangle");
-	// this.dash_line.anchor.set(.5);
+	// this.dash_line.anchor.setTo(.5);
 	// this.addChild(this.dash_line);
 	this.move_sfx = this.game.add.audio("swish");
-
+	this.grunt_sfx = this.game.add.audio("grunts");
+	this.grunt_sfx.addMarker("character_grunt", 1.15, .4);
+	this.grunt_sfx.volume = 2;
 
 	this.square = this.game.add.sprite(0,0, this.actor_type.atlas, this.actor_type.sprite_name);
 	this.square.scale.set(this.actor_type.sprite_scale);
 	this.square.tint = this.actor_type.sprite_color;
-	this.square.anchor.set(.5);
+	this.square.anchor.setTo(.5, .5);
 	this.addChild(this.square);
 
 	var eye_offset = this.actor_type.eye_offset || 0;
@@ -76,8 +79,8 @@ Actor.prototype.create = function() {
 	this.addChild(this.eye);
 
 	this.heart = new Phaser.Sprite(this.game, 0, 0, "heart");
-	this.heart.anchor.set(.5, 1);
-	this.heart.y=-30;
+	this.heart.anchor.setTo(.5, .5);
+	this.heart.y=-70;
 	this.addChild(this.heart);
 	this.heart.scale.set(0);
 
@@ -91,6 +94,8 @@ Actor.prototype.warpToCurrentTile = function() {
 	}
 }
 Actor.prototype.showHeart = function(){
+	// this.bringToTop(this.heart);
+	// this.parent.bringToTop(this.heart);
 	this.heart.scale.set(0);
 
 	var showTween = this.game.add.tween(this.heart.scale);
@@ -101,9 +106,11 @@ Actor.prototype.update = function() {
 	if(this.eye){
 		this.eye.update();
 	}
-
+	if(this.body){
+		this.game.debug.body(this.body);
+	}
 }
-Actor.prototype.slide = function(x_dir, y_dir){
+Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 
 	// if(!this.actor_type.can_slide)
 	// 	return;
@@ -199,10 +206,14 @@ Actor.prototype.slide = function(x_dir, y_dir){
 		if(target_block!=null){
 
 			// this.UpdateDashLine(this.current_tile, target_block);
+			if(target_block!=this.current_tile){
+				this.move_sfx.play();
+				var pitch = .95 + (this.game.rnd.frac()*.1);
+				this.move_sfx._sound.playbackRate.value = pitch;
+			}
 
-			this.move_sfx.play();
 
-			var move_tween = this.game.add.tween(this);
+			move_tween = this.game.add.tween(this);
 			move_tween.to({x: target_block.x, y: target_block.y}, 100);
 
 			if(that.current_tile.current_actor == that){
@@ -218,6 +229,12 @@ Actor.prototype.slide = function(x_dir, y_dir){
 				}
 
 			}
+
+
+			if(resolved_callback!=null){
+				resolved_callback.call();
+			}
+
 
 			move_tween.onComplete.add(function(){
 
@@ -298,6 +315,9 @@ Actor.prototype.Blink = function(color){
 }
 
 Actor.prototype.die = function(){
+
+
+
 	this.isDead = true;
 	if(this.board){
 		var ind = this.board.npcs.indexOf(this);
@@ -307,6 +327,10 @@ Actor.prototype.die = function(){
 	}
 	if(this.current_tile.current_actor == this)
 		this.current_tile.current_actor = null;
+
+	this.eye.small_circle.visible = false;
+	this.eye.ex.visible = true;
+	// this.eye.target = null;
 }
 
 Actor.prototype.TakeDamage = function(amount){
@@ -325,7 +349,18 @@ Actor.prototype.TakeDamage = function(amount){
 	return false;
 }
 Actor.prototype.HandleDeathLater = function(amount){
-	this.eye.destroy();
-	this.destroy();
+	this.grunt_sfx.play("character_grunt");
+	var pitch = 1.5 + (this.game.rnd.frac()*.4);
+	this.grunt_sfx._sound.playbackRate.value = pitch;
+	this.eye.target = null;
+	this.parent.bringToTop(this);
+	this.game.physics.enable(this, Phaser.Physics.ARCADE);
+	this.body.gravity.y = 1500;
+	this.body.velocity.x = 200 * (1-(this.game.rnd.frac()*2));
+	this.body.velocity.y = -300;
+	this.body.angularVelocity = this.body.velocity.x;
+	this.body.angularDrag = 200;
+	// this.eye.destroy();
+	// this.destroy();
 }
 

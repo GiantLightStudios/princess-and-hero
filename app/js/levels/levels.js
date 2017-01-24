@@ -503,8 +503,8 @@ var princessTorture00 = {
 	tile_data:
 		"wwwwwwwwwwwwwwww" +
 		"w              w" +
-		"w  p           w" +
-		"w  wwwwwwwwww  w" +
+		"w              w" +
+		"w              w" +
 		"w              w" +
 		"w              w" +
 		"w              w" +
@@ -514,8 +514,8 @@ var princessTorture00 = {
 		"w   k wp      ww" +
 		"w     w        w" +
 		"w   @ d%       w" +
-		"ww    w        w" +
-		"w     ww      pw" +
+		"www   w        w" +
+		"www   ww      pw" +
 		"wwwwwwwwwwwwwwww"
 	
 }
@@ -524,13 +524,13 @@ var princessTorture01 = {
 	width: 16,
 	tile_data:
 		"wwwwwwwwwwwwwwww" +
-		"w             ww" +
+		"w              w" +
 		"w  p           w" +
 		"w              w" +
-		"w  ww wwwwwww  w" +
 		"w              w" +
-		"w   w        w w" +
-		"w  w wwwwwwwww w" +
+		"w              w" +
+		"w  www         w" +
+		"w  w w         w" +
 		"w  w           w" +
 		"w     wwwwwwwwww" +
 		"w   k ww      pw" +
@@ -550,11 +550,11 @@ var princessTorture02 = {
 		"wwwwwwwwwwwwwwww" +
 		"w    ww  ww    w" +
 		"w              w" +
+		"w              w" +
 		"w ww    w   ww w" +
 		"w w     w k  w w" +
 		"w   www wwww   w" +
 		"w              w" +
-		"w  www    www  w" +
 		"w      @       w" +
 		"wwwwwwwdwwwwwwww" +
 		"ww     %      ww" +
@@ -566,6 +566,8 @@ var princessTorture02 = {
 	
 }
 
+
+//TODO: Mediocre level. Revise or replace.
 var princessTorture03 = {
 	height: 16,
 	width: 16,
@@ -691,7 +693,33 @@ var Chapter3 = {
 	
 }
 
+
 var JustMovers00 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"ww            ww" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"wr    @  %     w" +
+		"w              w" +
+		"wp             w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w             ww" +
+		"wwwwwwwwwwwwwwww"
+	
+}
+
+
+
+var JustMovers01 = {
 	height: 16,
 	width: 16,
 	tile_data:
@@ -713,7 +741,11 @@ var JustMovers00 = {
 		"wwwwwwwwwwwwwwww"
 	
 }
-var JustMovers01 = {
+
+
+
+//maybe too hard? weird? what is the point of this level?
+var JustMovers02 = {
 	height: 16,
 	width: 16,
 	tile_data:
@@ -735,20 +767,7 @@ var JustMovers01 = {
 		"wwwwwwwwwwwwwwww"
 	
 }
-var JustMovers02 = {
-	height: 8,
-	width: 16,
-	tile_data:
-		"wwwwwwwwwwwwwwww" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w   w      w   w" +
-		"w r  @    %  r w" +
-		"w   w      w   w" +
-		"wwwwwwwwwwwwwwww"
-	
-}
+
 var RooksAndPawns00 = {
 	height: 16,
 	width: 16,
@@ -996,7 +1015,7 @@ DungeonDashLevels.push(BossFight02);
 DungeonDashLevels.push(Chapter3);
 DungeonDashLevels.push(JustMovers00);
 DungeonDashLevels.push(JustMovers01);
-// DungeonDashLevels.push(JustMovers02);
+DungeonDashLevels.push(JustMovers02);
 // DungeonDashLevels.push(RooksAndPawns00);
 // DungeonDashLevels.push(RooksAndPawns01);
 // DungeonDashLevels.push(RooksAndPawns02);
