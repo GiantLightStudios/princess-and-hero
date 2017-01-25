@@ -1,5 +1,22 @@
 var DungeonDashGame = window.DungeonDashGame || {};
-
+DungeonDashGame.wait = function(condition, callback, maxwait, tick) {	
+		if (typeof condition != 'function' || typeof callback != 'function')		
+			return false;	
+		var _tick = tick || 100;	
+		var startDate = new Date().getTime();	
+		var itv = setInterval(function () {		
+			if (condition()) {			
+				clearInterval(itv);			
+				callback();		
+			}		
+			if (maxwait) {			
+				var date = new Date().getTime();			
+				if (date - startDate >= maxwait)				
+					clearInterval(itv);		
+			}	
+		}, _tick);	
+		return true;
+	}
 
 
 

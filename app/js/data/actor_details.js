@@ -15,11 +15,7 @@ var ACTOR_TYPES = {
 		eye_scale: .05,
 		sprite_color: 0xffffff,
 		onCollide: function(this_actor, that_actor, board){
-			console.log("player.onCollide");
-
 			if(that_actor.actor_type.isPrincess){
-				this_actor.showHeart();
-				that_actor.showHeart();
 				board.Win();
 			}else{
 				this_actor.attack(that_actor);
@@ -38,13 +34,10 @@ var ACTOR_TYPES = {
 		hp: 1,
 		damage: 1,
 		sprite_scale: .67,
-		eye_scale: .06,
+		eye_scale: .05,
 		sprite_color: 0xffffff,
 		onCollide: function(this_actor, that_actor, board){
-			console.log("princess.onCollide");
 			if(that_actor.actor_type.isPlayer){
-				this_actor.showHeart();
-				that_actor.showHeart();
 				board.Win();
 			}else{
 				this_actor.attack(that_actor);

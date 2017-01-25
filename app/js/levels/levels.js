@@ -34,8 +34,8 @@ var Chapter1 = {
 		"w ww w      w  w" +
 		"w w  w     ww  w" +
 		"w w  www    w  w" +
+		"w w  w w    w  w" +
 		"w ww w w w www w" +
-		"w              w" +
 		"w              w" +
 		"w              w" +
 		"wwwwwwwwwwwwwwww" +
@@ -405,19 +405,19 @@ var Chapter2 = {
 	width: 16,
 	tile_data:
 		"wwwwwwwwwwwwwwww" +
-		"w              w" +
+		"wwwwwwwwwwwwwwww" +
 		"w              w" +
 		"w              w" +
 		"w ww w     www w" +
-		"w w  w      ww w" +
-		"w w  www   w   w" +
+		"w w  w       w w" +
+		"w w  www   www w" +
+		"w w  w w   w   w" +
 		"w ww w w w www w" +
 		"w              w" +
 		"w              w" +
-		"w              w" +
 		"wwwwwwwwwwwwwwww" +
 		"wwwwwwwwwwwwwwww" +
-		"wk@        d % w" +
+		"wk       @ d % w" +
 		"wwwwwwwwwwwwwwww" +
 		"wwwwwwwwwwwwwwww"
 	
@@ -503,8 +503,8 @@ var princessTorture00 = {
 	tile_data:
 		"wwwwwwwwwwwwwwww" +
 		"w              w" +
-		"w  p           w" +
-		"w  wwwwwwwwww  w" +
+		"w              w" +
+		"w              w" +
 		"w              w" +
 		"w              w" +
 		"w              w" +
@@ -514,8 +514,8 @@ var princessTorture00 = {
 		"w   k wp      ww" +
 		"w     w        w" +
 		"w   @ d%       w" +
-		"ww    w        w" +
-		"w     ww      pw" +
+		"www   w        w" +
+		"www   ww      pw" +
 		"wwwwwwwwwwwwwwww"
 	
 }
@@ -524,13 +524,13 @@ var princessTorture01 = {
 	width: 16,
 	tile_data:
 		"wwwwwwwwwwwwwwww" +
-		"w             ww" +
+		"w              w" +
 		"w  p           w" +
 		"w              w" +
-		"w  ww wwwwwww  w" +
 		"w              w" +
-		"w   w        w w" +
-		"w  w wwwwwwwww w" +
+		"w              w" +
+		"w  www         w" +
+		"w  w w         w" +
 		"w  w           w" +
 		"w     wwwwwwwwww" +
 		"w   k ww      pw" +
@@ -550,11 +550,11 @@ var princessTorture02 = {
 		"wwwwwwwwwwwwwwww" +
 		"w    ww  ww    w" +
 		"w              w" +
+		"w              w" +
 		"w ww    w   ww w" +
 		"w w     w k  w w" +
 		"w   www wwww   w" +
 		"w              w" +
-		"w  www    www  w" +
 		"w      @       w" +
 		"wwwwwwwdwwwwwwww" +
 		"ww     %      ww" +
@@ -566,30 +566,274 @@ var princessTorture02 = {
 	
 }
 
+
+//TODO: Mediocre level. Revise or replace.
 var princessTorture03 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"wp    w        w" +
+		"w              w" +
+		"w              w" +
+		"w      @k      w" +
+		"wwwwwwwdwwwwwwww" +
+		"w              w" +
+		"ww            ww" +
+		"w    wwwwww    w" +
+		"w    wr   w    w" +
+		"wp   wwwwww   pw" +
+		"w              w" +
+		"w              w" +
+		"w       %      w" +
+		"w      w       w" +
+		"wwwwwwwwwwwwwwww"
+	
+}
+
+
+//This appears too hard. 
+//Players give up here. 
+//Need something less intimidating to look at.
+var princessTorture02FlippedIsh = {
+	height: 16,
+	width: 16,
+	tile_data:
+	
+		"wwwwwwwwwwwwwwww" +
+		"wp      w     pw" +
+		"w        k     w" +
+		"ww     @      ww" +
+		"wwwwwwwdwwwwwwww" +
+		"wp     %      pw" +
+		"w              w" +
+		"w              w" +
+		"ww            ww" +
+		"ww    wwww    ww" +
+		"www          www" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w      ww      w" +
+		"wwwwwwwwwwwwwwww"
+}
+
+
+var princeTorture00 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"w     w    ww  w" +
+		"wp        %d@ kw" +
+		"w          w   w" +
+		"w          wwwww" +
+		"w              w" +
+		"w              w" +
+		"ww            ww" +
+		"w              w" +
+		"w              w" +
+		"wp            pw" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w      w       w" +
+		"wwwwwwwwwwwwwwww"
+	
+}
+
+
+var BossFight02 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"w     w    w   w" +
+		"w     w   %w@1 w" +
+		"w          d   w" +
+		"w          wwwww" +
+		"w              w" +
+		"w              w" +
+		"ww            ww" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"wk     w       w" +
+		"wwwwwwwwwwwwwwww"
+	
+}
+
+
+
+
+
+var Chapter3 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"wwwwwwwwwwwwwwww" +
+		"w              w" +
+		"w              w" +
+		"w ww w     www w" +
+		"w w  w       w w" +
+		"w w  www    ww w" +
+		"w w  w w     w w" +
+		"w ww w w w www w" +
+		"w              w" +
+		"w              w" +
+		"wwwwwwwwwwwwwwww" +
+		"w   w      w   w" +
+		"w r  @    %  r w" +
+		"w   w      w   w" +
+		"wwwwwwwwwwwwwwww"
+	
+}
+
+
+var JustMovers00 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"ww            ww" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"wr    @  %    rw" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"ww            ww" +
+		"wwwwwwwwwwwwwwww"
+	
+}
+
+
+
+var JustMovers01 = {
 	height: 16,
 	width: 16,
 	tile_data:
 		"wwwwwwwwwwwwwwww" +
 		"w              w" +
 		"w              w" +
-		"w      k       w" +
 		"w      @       w" +
-		"wwwwwwwdwwwwwwww" +
 		"w              w" +
-		"w      w       w" +
-		"w      w       w" +
-		"w      p       w" +
-		"w   p      p   w" +
-		"w      %       w" +
 		"w              w" +
-		"wwww        wwww" +
-		"wwww   w    wwww" +
+		"w     wwww     w" +
+		"www    r     www" +
+		"w              w" +
+		"w     wwww     w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w  w   %    w  w" +
+		"ww            ww" +
 		"wwwwwwwwwwwwwwww"
 	
 }
 
 
+
+//maybe too hard? weird? what is the point of this level?
+var JustMovers02 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"ww            ww" +
+		"w              w" +
+		"w      @       w" +
+		"ww     r     w w" +
+		"www          www" +
+		"w w            w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w    w    w    w" +
+		"w  www %  www  w" +
+		"w             ww" +
+		"wwwwwwwwwwwwwwww"
+	
+}
+
+var RooksAndPawns00 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"wwwwwwwwwwwwwwww" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w   w      w   w" +
+		"w r  @    %  r w" +
+		"w   w      w   w" +
+		"wwwwwwwwwwwwwwww"
+	
+}
+var RooksAndPawns01 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"wwwwwwwwwwwwwwww" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w   w      w   w" +
+		"w r  @    %  r w" +
+		"w   w      w   w" +
+		"wwwwwwwwwwwwwwww"
+	
+}
+var RooksAndPawns02 = {
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"wwwwwwwwwwwwwwww" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w   w      w   w" +
+		"w r  @    %  r w" +
+		"w   w      w   w" +
+		"wwwwwwwwwwwwwwww"
+	
+}
 var Win = {
 	height: 16,
 	width: 16,
@@ -732,10 +976,8 @@ DungeonDashLevels.push(TwoMovesToExit);
 DungeonDashLevels.push(ThreeMovesToExit);
 DungeonDashLevels.push(MoveTeachMore);
 DungeonDashLevels.push(MoveTeachCrazySimpler);
-DungeonDashLevels.push(MoveTeachCrazy0);
 DungeonDashLevels.push(MoveTeachCrazyFlipped);
-DungeonDashLevels.push(MoveMaster0Flipped);
-DungeonDashLevels.push(MoveMaster0);
+// DungeonDashLevels.push(MoveMaster0);
 DungeonDashLevels.push(CombatStart0);
 DungeonDashLevels.push(CombatStart3);
 DungeonDashLevels.push(CombatStart4);
@@ -747,7 +989,7 @@ DungeonDashLevels.push(BossFight01);
 
 //start of act 2
 //princess has been captured and brought to the evil lair,
-//introduce keys, fluency with red guys, introduce green guys
+//introduce keys and doors, fluency with red guys
 //swap from princess capture to hero capture?
 DungeonDashLevels.push(Chapter2);
 DungeonDashLevels.push(keyPrincessMoves);
@@ -756,13 +998,36 @@ DungeonDashLevels.push(keyWithMobs2);
 DungeonDashLevels.push(princessTorture00);
 DungeonDashLevels.push(princessTorture01);
 DungeonDashLevels.push(princessTorture02);
+DungeonDashLevels.push(princessTorture03);
+DungeonDashLevels.push(princessTorture02FlippedIsh);
+DungeonDashLevels.push(princeTorture00);
+DungeonDashLevels.push(BossFight02);
 //end of act 2
 
 
 
 
 
-// DungeonDashLevels.push(princessTorture03);
+//start of act 3
+//princess and hero have escaped the prison, but are now being chased
+//introduce green moving mobs, fluency with keys and doors (chained keys?)
+
+DungeonDashLevels.push(Chapter3);
+DungeonDashLevels.push(JustMovers00);
+DungeonDashLevels.push(JustMovers01);
+DungeonDashLevels.push(JustMovers02);
+// DungeonDashLevels.push(RooksAndPawns00);
+// DungeonDashLevels.push(RooksAndPawns01);
+// DungeonDashLevels.push(RooksAndPawns02);
+// DungeonDashLevels.push(RooksAndPawnsAndKeys00);
+// DungeonDashLevels.push(RooksAndPawnsAndKeys01);
+// DungeonDashLevels.push(RooksAndPawnsAndKeys02);
+// DungeonDashLevels.push(BossFight03);
+
+//end of act 3
+
+
+
 
 // DungeonDashLevels.push(Win);
 DungeonDashLevels.push(End);

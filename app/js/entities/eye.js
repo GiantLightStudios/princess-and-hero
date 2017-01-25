@@ -37,10 +37,22 @@ Eye.prototype.create = function() {
 	this.small_circle = this.game.add.sprite(0,0, "circle");
 	this.small_circle.tint = 0x000000;
 	this.small_circle.anchor.set(.5);
-	this.small_circle.scale.set(.5);
+	this.small_circle.scale.set(.55);
 	this.addChild(this.small_circle);
 
 
+	this.twinkle = this.game.add.sprite(0,0, "circle");
+	this.twinkle.tint = 0xffffff;
+	this.twinkle.anchor.set(.5);
+	this.twinkle.scale.set(.15);
+
+	this.addChild(this.twinkle);
+
+	var ex_style = {font: "bold 500px Arial", fill: "#000", boundsAlignH: "center", boundsAlignV: "middle"};
+	this.ex = this.game.add.text(0,0, "x", ex_style);
+	this.ex.anchor.set(.5);
+	this.ex.visible = false;
+	this.addChild(this.ex);
 	this.scale.set(this.tile_scale*.8);
 
 }
@@ -59,6 +71,18 @@ Eye.prototype.update = function() {
 		this.big_circle.y = point.y*50 * p.y;
 		this.small_circle.x = point.x*150 * p.x;
 		this.small_circle.y = point.y*150 * p.y;
+		this.ex.x = this.small_circle.x;
+		this.ex.y = this.small_circle.y;
+	}else{
+		this.big_circle.x = 0;
+		this.big_circle.y = 0;
+		this.small_circle.x = 0;
+		this.small_circle.y = 0;
+		this.ex.x = this.big_circle.x;
+		this.ex.y = this.big_circle.y;
 	}
+
+	this.twinkle.x = this.small_circle.x + 70;
+	this.twinkle.y = this.small_circle.y - 70;
 
 }
