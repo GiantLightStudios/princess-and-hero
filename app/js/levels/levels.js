@@ -581,8 +581,8 @@ var princessTorture03 = {
 		"w              w" +
 		"ww            ww" +
 		"w    wwwwww    w" +
-		"w    w    w    w" +
-		"wp   ww  ww   pw" +
+		"w    wr   w    w" +
+		"wp   wwwwww   pw" +
 		"w              w" +
 		"w              w" +
 		"w       %      w" +
