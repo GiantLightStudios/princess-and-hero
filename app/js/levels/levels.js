@@ -977,7 +977,7 @@ DungeonDashLevels.push(ThreeMovesToExit);
 DungeonDashLevels.push(MoveTeachMore);
 DungeonDashLevels.push(MoveTeachCrazySimpler);
 DungeonDashLevels.push(MoveTeachCrazyFlipped);
-DungeonDashLevels.push(MoveMaster0);
+// DungeonDashLevels.push(MoveMaster0);
 DungeonDashLevels.push(CombatStart0);
 DungeonDashLevels.push(CombatStart3);
 DungeonDashLevels.push(CombatStart4);
