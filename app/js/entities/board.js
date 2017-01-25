@@ -41,7 +41,7 @@ Board.prototype.constructor = Board;
 
 Board.prototype.create = function() { 
 	this.win_sfx = this.game.add.audio("win");
-
+	this.win_sfx.volume = .05;
 	this.board_height = this.board_data.tile_data.length;
 	this.board_width = this.board_data.tile_data[0].length;
 	this.tile_sprite_size = 512; //todo: abstract this to read the actual sprite file size!
@@ -331,7 +331,6 @@ Board.prototype.GetTile = function(row, col){
 Board.prototype.CheckWin = function(){
 	var that = this;
 	if(this.has_won == true && that.player.isDead == false && that.princess.isDead == false){
-		console.log(this.player.y, this.princess.y);
 		if(this.player.y>this.princess.y){
 			this.bringToTop(this.player);
 		}else{
@@ -341,7 +340,6 @@ Board.prototype.CheckWin = function(){
 		that.princess.showHeart();
 		this.win_sfx.play();
 		this.timer.add(500, function(){
-			console.log("YAY");
 			that.board_model.set("win", true);
 		}, this);
 	}

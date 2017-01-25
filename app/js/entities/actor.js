@@ -62,6 +62,7 @@ Actor.prototype.create = function() {
 	// this.dash_line.anchor.setTo(.5);
 	// this.addChild(this.dash_line);
 	this.move_sfx = this.game.add.audio("swish");
+	this.move_sfx.volume = .3;
 	this.grunt_sfx = this.game.add.audio("grunts");
 	this.grunt_sfx.addMarker("character_grunt", 1.15, .4);
 	this.grunt_sfx.volume = 2;

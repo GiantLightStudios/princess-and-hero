@@ -705,14 +705,14 @@ var JustMovers00 = {
 		"w              w" +
 		"w              w" +
 		"w              w" +
-		"wr    @  %     w" +
-		"w              w" +
-		"wp             w" +
+		"wr    @  %    rw" +
 		"w              w" +
 		"w              w" +
 		"w              w" +
 		"w              w" +
-		"w             ww" +
+		"w              w" +
+		"w              w" +
+		"ww            ww" +
 		"wwwwwwwwwwwwwwww"
 	
 }
@@ -761,8 +761,8 @@ var JustMovers02 = {
 		"w              w" +
 		"w              w" +
 		"w              w" +
-		"w    w         w" +
-		"w  www %    w  w" +
+		"w    w    w    w" +
+		"w  www %  www  w" +
 		"w             ww" +
 		"wwwwwwwwwwwwwwww"
 	

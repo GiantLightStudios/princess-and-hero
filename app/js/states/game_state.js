@@ -31,7 +31,13 @@ DungeonDashGame.GameState.prototype  = {
 		this.game.load.audio("oh-no", "audio/sfx/131407__ecfike__oh-no-2.wav");
 		
 		//music
-		this.game.load.audio("bg-music", "audio/music/Lancefield_-_Love_Is.mp3");
+
+		//wolfram
+		//http://tones.wolfram.com/generate/GuEXwBaJgI0LSF4elOs8JIqmYGD0YiFPGNk3ChC9Jxy4
+		this.game.load.audio("bg-music", "audio/music/NKM-G-25-31-925709975-1-31537-30-40-3-2394-50-0-10-102-69-540-47-350-0-0-0-0-0.mp3");
+		
+		//ccMixter
+		//this.game.load.audio("bg-music", "audio/music/Lancefield_-_Love_Is.mp3");
 
 
 	},
@@ -81,12 +87,12 @@ DungeonDashGame.GameState.prototype  = {
 
 
 		this.bg_music = this.game.add.audio("bg-music");
-		this.bg_music.volume = .5;
+		this.bg_music.volume = .25;
 		this.bg_music.loop = true;
 		this.bg_music.play();
 
 		this.lose_sfx = this.game.add.audio("uh-oh");
-
+		this.lose_sfx.volume = .25;
 		this.timer = this.game.time.create(false);
 		this.timer.start();
 	},
