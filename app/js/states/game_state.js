@@ -85,12 +85,12 @@ DungeonDashGame.GameState.prototype  = {
 
 
 		this.vignette = new Phaser.Sprite(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, "vignette");
-		this.vignette.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
+		// this.vignette.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
 		this.vignette.anchor.set(.5);
 		this.world.add(this.vignette);
 
 		this.grunge = new Phaser.Sprite(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, "grunge");
-		this.grunge.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
+		// this.grunge.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
 		this.grunge.anchor.set(.5);
 		this.grunge.alpha = .5;
 		this.grunge.blendMode = PIXI.blendModes.MULTIPLY;
@@ -257,6 +257,8 @@ DungeonDashGame.GameState.prototype  = {
 		this.world.bringToTop(this.grunge);
 		this.world.bringToTop(this.vignette);
 
+
+
 		this.current_board.player.actor_model.on("change", function(a, b, c){
 			that.current_board.princess.hp = that.current_board.player.hp;
 			that.updateHUD(a,b,c);
@@ -270,6 +272,7 @@ DungeonDashGame.GameState.prototype  = {
 			if(did_win)
 				that.nextLevel();
 		});
+
 
 		this.game.world.bringToTop(this.aboveAll);
 		this.aboveAll.bringToTop(this.transitionCoverIn);
@@ -292,6 +295,7 @@ DungeonDashGame.GameState.prototype  = {
 
 		var lGameScale=Math.round(10000 * Math.min(this.game.width/SAFE_ZONE_WIDTH, this.game.height / SAFE_ZONE_HEIGHT)) / 10000;
 		lGameScale *= 16/this.current_board.board_width;
+		lGameScale *= .87;
 		this.game.global_scale = lGameScale;
 		this.world.scale.setTo (lGameScale,lGameScale);
 		this.world.x=(this.game.width-SAFE_ZONE_WIDTH*lGameScale)/2;

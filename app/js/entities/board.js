@@ -52,10 +52,19 @@ Board.prototype.create = function() {
 	//tiles
 	for(var x = 0;x<this.board_width;x++){
 		for(var y = 0;y<this.board_height;y++){
+			var t_data = this.board_data.tile_data[this.board_width * y + x];
+
+
+
+
 			var tile_color = 0x474747;
 			if((y%2==0 && x%2==0) || (y%2==1 && x%2==1) ){
 				tile_color = 0x363636;
 			}
+			if(t_data == "~"){
+				tile_color = 0x000000;
+			}
+
 			var x_loc = x-(this.board_width/2);
 			if(this.board_width%2==0){
 				x_loc+=.5;
@@ -82,7 +91,6 @@ Board.prototype.create = function() {
 
 
 			// console.log(this.board_data.tile_data);
-			var t_data = this.board_data.tile_data[this.board_width * y + x];
 			// this.board_data.tile_data[this.board_width * y + x] = tile;
 
 
