@@ -13,17 +13,33 @@ DungeonDashGame.GameState.prototype  = {
 		this.game_model.set(this.current_board_index);
 	},
 	preload: function(){
+
+		//IMAGES
+
+		//primary shapes
 		this.game.load.image("circle", "img/circle.png");
 		this.game.load.image("square", "img/square.png");
 		this.game.load.image("triangle", "img/triangle.png");
+
+		//items and pickups
 		this.game.load.image("heart", "img/heart.png");
 		this.game.load.image("key", "img/key.png");
+
+		//spritesheet. 
+		//currently characters and walls. someday, everything.
+		this.game.load.atlas('all_sprites', 'img/game_sprites/all_sprites.png', 'img/game_sprites/all_sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
+
+
+		//lights and fx
+		this.game.load.image("light_circle_orange", "img/light_circle_orange.png");
+
+
+		//overlay elements
 		this.game.load.image("vignette", "img/vignette.png");
 		this.game.load.image("grunge", "img/grunge.png");
-		// this.game.load.atlas('kenney_roguelike_atlas', 'img/roguelike-pack/Spritesheet/roguelikeSheet_transparent.png', 'img/roguelike-pack/Spritesheet/sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
-		// this.game.load.atlas('roguelikeitems', 'img/roguelikeitems/roguelikeitems.png', 'img/roguelikeitems/sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
-		// this.game.load.atlas('kenney_roguelike_characters', 'img/roguelike-characters-pack/Spritesheet/roguelikeChar_transparent.png', 'img/roguelike-characters-pack/Spritesheet/sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
-		this.game.load.atlas('all_sprites', 'img/game_sprites/all_sprites.png', 'img/game_sprites/all_sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
+
+
+		//AUDIO
 
 		//sfx
 		this.game.load.audio("swish", "audio/sfx/75534__ra-gun__swish-bamboo-pole-w-insect-net-02.wav");
@@ -35,9 +51,14 @@ DungeonDashGame.GameState.prototype  = {
 		//music
 
 		//wolfram
+		
 		//http://tones.wolfram.com/generate/GuEXwBaJgI0LSF4elOs8JIqmYGD0YiFPGNk3ChC9Jxy4
 		this.game.load.audio("bg-music", "audio/music/NKM-G-25-31-925709975-1-31537-30-40-3-2394-50-0-10-102-69-540-47-350-0-0-0-0-0.mp3");
 		
+		http://tones.wolfram.com/generate/GRPiC6IJmSNGhj4dyTsrdcxYG0qylRibWvAxQelZqxFbsI
+		this.game.load.audio("boss-music", "audio/music/NKM-G-25-31-254543185-1-20654-40-40-3-3680-32-0-10-203-69-122-70-101-0-0-47-127-0.wav")
+		
+
 		//ccMixter
 		//this.game.load.audio("bg-music", "audio/music/Lancefield_-_Love_Is.mp3");
 
@@ -89,12 +110,7 @@ DungeonDashGame.GameState.prototype  = {
 		this.vignette.anchor.set(.5);
 		this.world.add(this.vignette);
 
-		this.grunge = new Phaser.Sprite(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, "grunge");
-		// this.grunge.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
-		this.grunge.anchor.set(.5);
-		this.grunge.alpha = .5;
-		this.grunge.blendMode = PIXI.blendModes.MULTIPLY;
-		this.world.add(this.grunge);
+
 
 		this.loadBoard(this.current_board_index);
 
@@ -254,7 +270,9 @@ DungeonDashGame.GameState.prototype  = {
 		this.updateHUD();
 		this.resize();
 		
-		this.world.bringToTop(this.grunge);
+
+
+		
 		this.world.bringToTop(this.vignette);
 
 

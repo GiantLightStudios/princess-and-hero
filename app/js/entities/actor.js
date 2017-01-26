@@ -67,6 +67,19 @@ Actor.prototype.create = function() {
 	this.grunt_sfx.addMarker("character_grunt", 1.15, .4);
 	this.grunt_sfx.volume = 2;
 
+	if(this.actor_type.has_light){
+		this.light = this.game.add.sprite(0,0, "light_circle_orange");
+		// this.light.scale.set(this.actor_type.sprite_scale);
+		// this.light.tint = this.actor_type.sprite_color;
+		this.light.blendMode = PIXI.blendModes.ADD;
+		this.light.alpha = .2;
+		this.light.scale.set(.67);
+		
+		this.light.anchor.setTo(.5, .5);
+		this.addChild(this.light);
+	}
+
+
 	this.square = this.game.add.sprite(0,0, this.actor_type.atlas, this.actor_type.sprite_name);
 	this.square.scale.set(this.actor_type.sprite_scale);
 	this.square.tint = this.actor_type.sprite_color;

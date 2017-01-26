@@ -49,6 +49,22 @@ Board.prototype.create = function() {
 	this.board_height = this.board_data.height;
 	this.goal = null;
 
+
+
+
+
+
+
+
+	this.grunge = new Phaser.Sprite(this.game, 0, 0, "grunge");
+	// this.grunge.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
+	this.grunge.anchor.set(.5);
+	this.grunge.alpha = .4;
+	this.grunge.blendMode = PIXI.blendModes.MULTIPLY;
+	this.add(this.grunge);
+
+
+
 	//tiles
 	for(var x = 0;x<this.board_width;x++){
 		for(var y = 0;y<this.board_height;y++){
@@ -206,6 +222,11 @@ Board.prototype.create = function() {
 		this.bringToTop(this.npcs[i]);
 		this.npcs[i].eye.target = this.princess;
 	}
+
+
+
+
+	this.bringToTop(this.grunge);
 	this.bringToTop(this.player);
 	this.bringToTop(this.princess);
 	this.bringToTop(this.player.heart);

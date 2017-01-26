@@ -4,6 +4,7 @@ var ACTOR_TYPES = {
 	"player": {
 		isPlayer: true,
 		friendly: true,
+		has_light: true,
 		atlas: "all_sprites",
 		sprite_name: "hero_base",
 		can_activate: true,
@@ -26,6 +27,7 @@ var ACTOR_TYPES = {
 	"princess": {
 		isPrincess: true,
 		friendly: true,
+		has_light: true,
 		atlas: "all_sprites",
 		sprite_name: "princess_base",
 		can_activate: true,
