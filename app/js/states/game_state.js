@@ -18,6 +18,8 @@ DungeonDashGame.GameState.prototype  = {
 		this.game.load.image("triangle", "img/triangle.png");
 		this.game.load.image("heart", "img/heart.png");
 		this.game.load.image("key", "img/key.png");
+		this.game.load.image("vignette", "img/vignette.png");
+		this.game.load.image("grunge", "img/grunge.png");
 		// this.game.load.atlas('kenney_roguelike_atlas', 'img/roguelike-pack/Spritesheet/roguelikeSheet_transparent.png', 'img/roguelike-pack/Spritesheet/sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
 		// this.game.load.atlas('roguelikeitems', 'img/roguelikeitems/roguelikeitems.png', 'img/roguelikeitems/sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
 		// this.game.load.atlas('kenney_roguelike_characters', 'img/roguelike-characters-pack/Spritesheet/roguelikeChar_transparent.png', 'img/roguelike-characters-pack/Spritesheet/sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
@@ -77,7 +79,25 @@ DungeonDashGame.GameState.prototype  = {
 		this.aboveAll.add(this.transitionCoverIn);
 
 
+
+
+
+
+
+		this.vignette = new Phaser.Sprite(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, "vignette");
+		this.vignette.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
+		this.vignette.anchor.set(.5);
+		this.world.add(this.vignette);
+
+		this.grunge = new Phaser.Sprite(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, "grunge");
+		this.grunge.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
+		this.grunge.anchor.set(.5);
+		this.grunge.alpha = .5;
+		this.grunge.blendMode = PIXI.blendModes.MULTIPLY;
+		this.world.add(this.grunge);
+
 		this.loadBoard(this.current_board_index);
+
 
 
 		this.resize();
@@ -233,6 +253,9 @@ DungeonDashGame.GameState.prototype  = {
 		this.world.add(this.current_board);
 		this.updateHUD();
 		this.resize();
+		
+		this.world.bringToTop(this.grunge);
+		this.world.bringToTop(this.vignette);
 
 		this.current_board.player.actor_model.on("change", function(a, b, c){
 			that.current_board.princess.hp = that.current_board.player.hp;
