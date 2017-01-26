@@ -35,13 +35,14 @@ var PROP_TYPES = {
 		}
 	},
 	"flame": {
-		sprite_color: 0x8b754b,
+		sprite_color: 0xFFFFFF,
+		alpha: .5,
 		blocks: true,
 		atlas: "flame",
 		sprite_name: null,
 		scale: .75,
 		// blendMode: PIXI.blendModes.ADD,
-		blendMode: 3,
+		blendMode: 1,
 		onCollide: function(actor, prop, board){
 			// console.log("collide w/ door", actor, prop);
 			actor.TakeDamage(1);
