@@ -17,6 +17,7 @@ Board = function(game, x, y, tile_scale, level_data_index){
 
 	this.tiles = [];
 	this.props = [];
+	this.props_above = [];
 	this.pickups = [];
 	this.npcs = [];
 
@@ -167,7 +168,9 @@ Board.prototype.create = function() {
 					npc.warpToCurrentTile();
 					this.npcs.push(npc);
 					break;
-				case "z":
+				
+				//portal
+				case "0":
 					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
 					this.add(prop);
@@ -183,6 +186,7 @@ Board.prototype.create = function() {
 					this.props.push(prop);
 					break;
 
+				//wall
 				case "w":
 					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
@@ -191,6 +195,18 @@ Board.prototype.create = function() {
 					prop.current_tile.current_prop = prop;
 					this.props.push(prop);
 					break;
+
+				//flame
+				case "*":
+					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					prop.board = this;
+					this.add(prop);
+					prop.current_tile = this.GetTile(y,x);
+					prop.current_tile.current_prop = prop;
+					this.props_above.push(prop);
+					break;
+
+				//door
 				case "d":
 					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
@@ -200,6 +216,7 @@ Board.prototype.create = function() {
 					this.props.push(prop);
 					break;
 
+				//pickups
 				case "h":
 				case "k":
 					var pickup = new Pickup(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
@@ -215,6 +232,9 @@ Board.prototype.create = function() {
 		}
 	}
 
+	this.bringToTop(this.grunge);
+
+
 	for(var i = 0;i<this.props.length;i++){
 		this.bringToTop(this.props[i]);
 	}
@@ -226,18 +246,22 @@ Board.prototype.create = function() {
 
 
 
-	this.bringToTop(this.grunge);
 	this.bringToTop(this.player);
 	this.bringToTop(this.princess);
 	this.bringToTop(this.player.heart);
 	this.bringToTop(this.princess.heart);
+
+	for(var i = 0;i<this.props_above.length;i++){
+		this.bringToTop(this.props_above[i]);
+	}
+
+
 
 	this.player.eye.target = this.princess;
 	this.princess.eye.target = this.player;
 	if(this.boss){
 		this.boss.eye.target = this.player;
 	}
-
 
 
 
@@ -397,5 +421,8 @@ Board.prototype.update = function() {
 	}
 	for(var i = 0;i<this.props.length;i++){
 		this.props[i].update();
+	}
+	for(var i = 0;i<this.props_above.length;i++){
+		this.props_above[i].update();
 	}
 }

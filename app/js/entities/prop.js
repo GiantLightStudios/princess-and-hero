@@ -12,12 +12,13 @@ Prop = function(game, x, y, scale, p_type){
 		case "d":
 			this.prop_type = PROP_TYPES.door;
 			break;
-		case "*":
-			this.prop_type = PROP_TYPES.win;
-			break;
-		case "z":
+		case "0":
 			this.prop_type = PROP_TYPES.portal;
 			break;
+		case "*":
+			this.prop_type = PROP_TYPES.flame;
+			break;
+
 	}
 	
 	this.scaleUpTween = this.game.add.tween(this.scale).to({ x: this.tile_scale * 2, y: this.tile_scale * 2}, 500, "Quart.easeOut");
@@ -36,6 +37,11 @@ Prop.prototype.create = function() {
 	this.square.tint = this.prop_type.sprite_color;
 	this.square.anchor.set(.5);
 	this.addChild(this.square);
+
+	if(this.prop_type.blendMode){
+		console.log(this.prop_type.blendMode);
+		this.square.blendMode = this.prop_type.blendMode;
+	}
 	this.scale.set(this.prop_type.scale);
 
 
@@ -46,7 +52,6 @@ Prop.prototype.destroy_me_good = function(){
 }
 Prop.prototype.update = function() { 
 	if(this.current_tile){
-		// this.current_tile.square.tint = 0xff0000;
 		this.x = this.current_tile.x;
 		this.y = this.current_tile.y;
 	}

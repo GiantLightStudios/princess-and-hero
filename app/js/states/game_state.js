@@ -25,6 +25,10 @@ DungeonDashGame.GameState.prototype  = {
 		this.game.load.image("heart", "img/heart.png");
 		this.game.load.image("key", "img/key.png");
 
+
+		//props
+		this.game.load.image("flame", "img/flame.png");
+
 		//spritesheet. 
 		//currently characters and walls. someday, everything.
 		this.game.load.atlas('all_sprites', 'img/game_sprites/all_sprites.png', 'img/game_sprites/all_sprites.json', Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
@@ -106,14 +110,15 @@ DungeonDashGame.GameState.prototype  = {
 
 
 		this.vignette = new Phaser.Sprite(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, "vignette");
+		this.vignette.blendMode = PIXI.blendModes.MULTIPLY;
 		// this.vignette.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
+		this.vignette.alpha = .75;
 		this.vignette.anchor.set(.5);
 		this.world.add(this.vignette);
 
 
 
 		this.loadBoard(this.current_board_index);
-
 
 
 		this.resize();
@@ -273,7 +278,6 @@ DungeonDashGame.GameState.prototype  = {
 
 
 		
-		this.world.bringToTop(this.vignette);
 
 
 
@@ -290,6 +294,10 @@ DungeonDashGame.GameState.prototype  = {
 			if(did_win)
 				that.nextLevel();
 		});
+
+
+		this.world.bringToTop(this.vignette);
+
 
 
 		this.game.world.bringToTop(this.aboveAll);
@@ -314,6 +322,10 @@ DungeonDashGame.GameState.prototype  = {
 		var lGameScale=Math.round(10000 * Math.min(this.game.width/SAFE_ZONE_WIDTH, this.game.height / SAFE_ZONE_HEIGHT)) / 10000;
 		lGameScale *= 16/this.current_board.board_width;
 		lGameScale *= .87;
+
+		this.vignette.scale.set(this.current_board.board_width/16);
+
+
 		this.game.global_scale = lGameScale;
 		this.world.scale.setTo (lGameScale,lGameScale);
 		this.world.x=(this.game.width-SAFE_ZONE_WIDTH*lGameScale)/2;

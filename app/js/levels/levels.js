@@ -1,34 +1,12 @@
 var DungeonDashLevels = window.DungeonDashLevels || [];
 
 
-var emptyLevel = {
-	height: 16,
-	width: 16,
-	tile_data:
-		"wwwwwwwwwwwwwwww" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w      @       w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"wwwwwwwwwwwwwwww"
-	
-}
+// CHAPTER 1
 var Chapter1 = {
 	height: 16,
 	width: 16,
 	tile_data:
 		"wwwwwwwwwwwwwwww" +
-		"w              w" +
 		"w              w" +
 		"w              w" +
 		"w ww w      w  w" +
@@ -37,16 +15,14 @@ var Chapter1 = {
 		"w w  w w    w  w" +
 		"w ww w w w www w" +
 		"w              w" +
+		"w    *    *    w" +
 		"w              w" +
 		"wwwwwwwwwwwwwwww" +
 		"w              w" +
 		"w @          % w" +
 		"w              w" +
 		"wwwwwwwwwwwwwwww"
-	
 }
-
-
 
 var TwoMovesToExit = {
 	height: 16,
@@ -63,11 +39,11 @@ var TwoMovesToExit = {
 		"wwwwwwwwwwwwwwww" +
 		"w              w" +
 		"w              w" +
-		"w              w" +
+		"w       *      w" +
 		"w       w      w" +
 		"w  @    w    % w" +
 		"w       w      w" +
-		"w              w" +
+		"w       *      w" +
 		"w              w" +
 		"w              w" +
 		"w              w" +
@@ -88,8 +64,8 @@ var ThreeMovesToExit = {
 	"tile_data": 		
 		"~~~wwwwwwwwww~~~" +
 		"~~~w        w~~~" +
-		"~~~w        w~~~" +
-		"~~~w        w~~~" +
+		"~www        www~" +
+		"~w*w        w*w~" +
 		"wwww        wwww" +
 		"w      ww      w" +
 		"w      ww      w" +
@@ -97,35 +73,13 @@ var ThreeMovesToExit = {
 		"w      ww      w" +
 		"w      ww      w" +
 		"wwww        wwww" +
-		"~~~w        w~~~" +
-		"~~~w        w~~~" +
+		"~w*w        w*w~" +
+		"~www        www~" +
 		"~~~w        w~~~" +
 		"~~~wwwwwwwwww~~~" +
 		"~~~~~~~~~~~~~~~~"
 }
-var MoveTeachCrazySimpler = {
-	height: 12,
-	width: 12,
-	"dialogue": [
-		{
-			"speaker": "hero",
-			"text": "Very cute."
-		}
-	],
-	"tile_data": 		
-		"wwwwwwwwwwww" +
-		"w          w" +
-		"w@         w" +
-		"wwww    wwww" +
-		"~~~w    w~~~" +
-		"~~~w    w~~~" +
-		"~~~w    w~~~" +
-		"~~~w    w~~~" +
-		"wwww    wwww" +
-		"w%         w" +
-		"w    ww    w" +
-		"wwwwwwwwwwww"
-}
+
 var MoveTeachMore = {
 	height: 16,
 	width: 16,
@@ -138,8 +92,8 @@ var MoveTeachMore = {
 	"tile_data": 		
 		"~~wwww~~~~~~~~~~" +
 		"www  w~~~~~~~~~~" +
-		"w   @w~~~~~~~~~~" +
-		"w    w~~~~~~~~~~" +
+		"w   @www~~~~~~~~" +
+		"w    w*w~~~~~~~~" +
 		"w  wwwwwwwwwwwww" +
 		"w              w" +
 		"w       w      w" +
@@ -147,40 +101,39 @@ var MoveTeachMore = {
 		"w       w      w" +
 		"w              w" +
 		"wwwwwwwwwwwww  w" +
-		"~~~~~~~~~~w    w" +
-		"~~~~~~~~~~w%   w" +
+		"~~~~~~~~w*w    w" +
+		"~~~~~~~~www%   w" +
 		"~~~~~~~~~~w  www" +
 		"~~~~~~~~~~wwww~~" +
 		"~~~~~~~~~~~~~~~~"
 }
 
-var MoveTeachCrazy0 = {
-	height: 16,
-	width: 16,
+var MoveTeachCrazySimpler = {
+	height: 14,
+	width: 14,
 	"dialogue": [
 		{
 			"speaker": "hero",
-			"text": "Hmmm..."
+			"text": "Very cute."
 		}
 	],
 	"tile_data": 		
-		"wwwwwwwwwwwwwwww" +
-		"w             ww" +
-		"w     @www    ww" +
-		"w  wwwwwww    ww" +
-		"w  wwwwwww  wwww" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"wwww        wwww" +
-		"w              w" +
-		"w              w" +
-		"wwwwwwwwwwwww  w" +
-		"~w   %ww       w" +
-		"~w  wwwww    www" +
-		"~w           w~~" +
-		"~wwwwwwwwwwwww~~"
+		"wwwwwwwwwwwwww" +
+		"w            w" +
+		"w  *      *  w" +
+		"w@           w" +
+		"wwww      wwww" +
+		"~~~w      w~~~" +
+		"~~~w      w~~~" +
+		"~~~w      w~~~" +
+		"~~~w      w~~~" +
+		"wwww      wwww" +
+		"w%           w" +
+		"w  *      *  w" +
+		"w     ww     w" +
+		"wwwwwwwwwwwwww"
 }
+
 var MoveTeachCrazyFlipped = {
 	height: 16,
 	width: 16,
@@ -193,89 +146,25 @@ var MoveTeachCrazyFlipped = {
 	"tile_data": 		
 		"~wwwwwwwwwwwww~~" +
 		"~w           w~~" +
-		"~w  wwwww    www" +
-		"~w   @ww       w" +
+		"~w *       * www" +
+		"~w   @         w" +
 		"wwwwwwwwwwwww  w" +
 		"w              w" +
 		"w              w" +
 		"wwww        wwww" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w  wwwwwww  wwww" +
-		"w  wwwwwww    w~" +
-		"w     %www    w~" +
-		"w             w~" +
-		"wwwwwwwwwwwwwww~"
-
-
-
+		"~w             w" +
+		"~w             w" +
+		"~w             w" +
+		"~w wwwwwww  wwww" +
+		"~w w*   *w    w~" +
+		"~w wwwwwww    w~" +
+		"~w    %       w~" +
+		"~wwwwwwwwwwwwww~"
 }
-var MoveMaster0 = {
-	height: 16,
-	width: 16,
-	"dialogue": [
-		{
-			"speaker": "princess",
-			"text": "Wait for me!"
-		}
-	],
-	"tile_data": 		
-		"~~~~~~~~~~~~wwww" +
-		"wwwwwwwwwwwww  w" +
-		"w             @w" +
-		"w         wwwwww" +
-		"w             w~" +
-		"w  wwwwwwwwww w~" +
-		"w           w w~" +
-		"wwwwwwwwwwwww w~" +
-		"w             w~" +
-		"w   wwwwww    w~" +
-		"w   w  % w    w~" +
-		"w   w  www    ww" +
-		"w   w          w" +
-		"w   ww         w" +
-		"w              w" +
-		"wwwwwwwwwwwwwwww"
-
-}
-
-var MoveMaster0Flipped = {
-	height: 16,
-	width: 16,
-	"dialogue": [
-		{
-			"speaker": "hero",
-			"text": "Hmm, wrong way..."
-		}
-	],
-	"tile_data": 		
-		"wwwwwwwwwwwwwwww" +
-		"w              w" +
-		"w   ww         w" +
-		"w   w          w" +
-		"w   w  www    ww" +
-		"w   w  @ w    w~" +
-		"w   wwwwww    w~" +
-		"w             w~" +
-		"wwwwwwwwwwwww w~" +
-		"w           w w~" +
-		"w  wwwwwwwwww w~" +
-		"w             w~" +
-		"w         wwwwww" +
-		"w             %w" +
-		"wwwwwwwwwwwww  w" +
-		"~~~~~~~~~~~~wwww"
-
-}
-
-
-
-
 
 var CombatStart0 = {
-	height: 12,
-	width: 12,
+	height: 14,
+	width: 14,
 	"dialogue": [
 		{
 			"speaker": "princess",
@@ -287,20 +176,21 @@ var CombatStart0 = {
 		}
 	],
 	tile_data:
-		"~~~~~~~~~~~~" +
-		"wwwwwwwwwwww" +
-		"w          w" +
-		"w          w" +
-		"w  wwwwww  w" +
-		"w@  p  p  %w" +
-		"w  wwwwww  w" +
-		"w          w" +
-		"w          w" +
-		"wwwwwwwwwwww" +
-		"~~~~~~~~~~~~" +
-		"~~~~~~~~~~~~"
+		"~~~~~~~~~~~~~~" +
+		"~www~~~~~~www~" +
+		"~w*wwwwwwww*w~" +
+		"~www      www~" +
+		"~~w        w~~" +
+		"~~w wwwwww w~~" +
+		"~~w@ p  p %w~~" +
+		"~~w wwwwww w~~" +
+		"~~w        w~~" +
+		"~www      www~" +
+		"~w*wwwwwwww*w~" +
+		"~www~~~~~~www~" +
+		"~~~~~~~~~~~~~~" +
+		"~~~~~~~~~~~~~~"
 }
-
 
 var CombatStart3 = {
 	height: 14,
@@ -315,21 +205,22 @@ var CombatStart3 = {
 		"~wwww~~~~~~~~~" +
 		"~w  wwwwwwwwww" +
 		"~w     @    pw" +
-		"~ww wwwwwww ww" +
-		"~~www     w w~" +
-		"~ww       w w~" +
-		"~w        w w~" +
-		"~w w      w w~" +
-		"~w w      w w~" +
+		"www wwwwwww ww" +
+		"w*www     w w~" +
+		"www       w w~" +
+		"~w    www w w~" +
+		"~w w  w*w w w~" +
+		"~w w  www w w~" +
 		"~w w        w~" +
 		"~w wwwwwwww w~" +
 		"~w          w~" +
 		"~w     %    w~" +
 		"~wwwwwwwwwwww~"
 }
+
 var CombatStart4 = {
-	height: 12,
-	width: 12,
+	height: 14,
+	width: 14,
 	"dialogue": [
 		{
 			"speaker": "princess",
@@ -337,24 +228,25 @@ var CombatStart4 = {
 		}
 	],
 	tile_data:
-		"wwwwwwwwwwww" +
-		"w          w" +
-		"w          w" +
-		"w wwwwwww  w" +
-		"w wp       w" +
-		"w@w   wwwwww" +
-		"wwww      w~" +
-		"~w%w      w~" +
-		"~w        w~" +
-		"~w wwwwww w~" +
-		"~w        w~" +
-		"~wwwwwwwwww~"
+		"~~~~~~~~~~~~~~" +
+		"~wwwwwwwwwwww~" +
+		"~w          w~" +
+		"~w          w~" +
+		"~w wwwwwww  w~" +
+		"~w wp       w~" +
+		"~w@w   wwwwww~" +
+		"~wwww      w~~" +
+		"~~w%w      w~~" +
+		"~~w        w~~" +
+		"~~w        w~~" +
+		"~~w        w~~" +
+		"~~wwwwwwwwww~~" +
+		"~~~~~~~~~~~~~~" 
 }
 
-
 var BossFight01 = {
-	height: 12,
-	width: 12,
+	height: 10,
+	width: 10,
 	"dialogue": [
 		{
 			"speaker": "princess",
@@ -366,22 +258,25 @@ var BossFight01 = {
 		}
 	],
 	tile_data:
-		"~~~~~~~~~~~~" +
-		"~~~~~~~~~~~~" +
-		"~~~~~~~~~~~~" +
-		"wwwwwwwwwwww" +
-		"w          w" +
-		"w @   1  % w" +
-		"w          w" +
-		"wwwwwwwwwwww" +
-		"~~~~~~~~~~~~" +
-		"~~~~~~~~~~~~" +
-		"~~~~~~~~~~~~" +
-		"~~~~~~~~~~~~" 
+		"~~~~~~~~~~" +
+		"~~~~~~~~~~" +
+		"wwwwwwwwww" +
+		"w        w" +
+		"w @  1 % w" +
+		"w        w" +
+		"wwwwwwwwww" +
+		"~~~~~~~~~~" +
+		"~~~~~~~~~~" +
+		"~~~~~~~~~~" 
 }
 
 
 
+
+
+
+
+// CHAPTER 2
 var Chapter2 = {
 	height: 16,
 	width: 16,
@@ -402,9 +297,7 @@ var Chapter2 = {
 		"wk       @ d % w" +
 		"wwwwwwwwwwwwwwww" +
 		"wwwwwwwwwwwwwwww"
-	
 }
-
 
 var keyPrincessMoves = {
 	height: 12,
@@ -422,7 +315,6 @@ var keyPrincessMoves = {
 		"w     @d%  w" +
 		"wwwwwwww   w" +
 		"~~~~~~~wwwww"
-	
 }
 
 //B+
@@ -448,8 +340,6 @@ var keyWithMobs = {
 		"wwwwwwwwwwwwwwww"
 }
 
-
-
 //B-, unfocused
 var keyWithMobs2 = {
 	height: 16,
@@ -471,7 +361,6 @@ var keyWithMobs2 = {
 		"w  www    w    w" +
 		"w         w    w" +
 		"wwwwwwwwwwwwwwww"
-	
 }
 
 //A
@@ -491,8 +380,8 @@ var princessTorture00 = {
 		"www   w    w" +
 		"~~w  www  pw" +
 		"~~wwww~wwwww"
-	
 }
+
 //A
 var princessTorture01 = {
 	height: 12,
@@ -510,10 +399,7 @@ var princessTorture01 = {
 		"wwwwwww    w" +
 		"~~~~~~wp  ww" +
 		"~~~~~~wwwww~"
-	
 }
-
-
 
 //A+
 var princessTorture02 = {
@@ -534,11 +420,9 @@ var princessTorture02 = {
 		"w  w      w  w" +
 		"wp    w     pw" +
 		"wwwwwwwwwwwwww"
-	
 }
 
-
-//TODO: Mediocre level. Revise or replace.
+//B+
 var princessTorture03 = {
 	height: 14,
 	width: 14,
@@ -557,13 +441,10 @@ var princessTorture03 = {
 		"w      %     w" +
 		"w     ww     w" +
 		"wwwwwwwwwwwwww"
-	
 }
 
 
-//This appears too hard. 
-//Players give up here. 
-//Need something less intimidating to look at.
+//B
 var princessTorture02FlippedIsh = {
 	height: 14,
 	width: 14,
@@ -585,7 +466,7 @@ var princessTorture02FlippedIsh = {
 		"wwwwwwwwwwwwww"
 }
 
-
+//B
 var princeTorture00 = {
 	height: 14,
 	width: 14,
@@ -604,10 +485,9 @@ var princeTorture00 = {
 		"w            w" +
 		"w    w       w" +
 		"wwwwwwwwwwwwww"
-	
 }
 
-
+//A
 var BossFight02 = {
 	height: 12,
 	width: 12,
@@ -624,13 +504,12 @@ var BossFight02 = {
 		"w          w" +
 		"wk  w      w" +
 		"wwwwwwwwwwww"
-	
 }
 
 
 
 
-
+//CHAPTER 3
 var Chapter3 = {
 	height: 16,
 	width: 16,
@@ -651,9 +530,7 @@ var Chapter3 = {
 		"w r  @    %  r w" +
 		"w   w      w   w" +
 		"wwwwwwwwwwwwwwww"
-	
 }
-
 
 var JustMovers00 = {
 	height: 16,
@@ -675,10 +552,7 @@ var JustMovers00 = {
 		"w              w" +
 		"ww            ww" +
 		"~wwwwwwwwwwwwww~"
-	
 }
-
-
 
 var JustMovers01 = {
 	height: 14,
@@ -698,11 +572,9 @@ var JustMovers01 = {
 		"w  w  %   w  w" +
 		"ww          ww" +
 		"~wwwwwwwwwwww~"
-	
 }
 
-
-
+//B
 //maybe too hard? weird? what is the point of this level?
 var JustMovers02 = {
 	height: 14,
@@ -722,7 +594,6 @@ var JustMovers02 = {
 		"w  ww %  ww  w" +
 		"w           ww" +
 		"wwwwwwwwwwwww~"
-	
 }
 
 var RooksAndPawns00 = {
@@ -745,8 +616,8 @@ var RooksAndPawns00 = {
 		"w r  @    %  r w" +
 		"w   w      w   w" +
 		"wwwwwwwwwwwwwwww"
-	
 }
+
 var RooksAndPawns01 = {
 	height: 16,
 	width: 16,
@@ -767,8 +638,8 @@ var RooksAndPawns01 = {
 		"w r  @    %  r w" +
 		"w   w      w   w" +
 		"wwwwwwwwwwwwwwww"
-	
 }
+
 var RooksAndPawns02 = {
 	height: 16,
 	width: 16,
@@ -789,8 +660,13 @@ var RooksAndPawns02 = {
 		"w r  @    %  r w" +
 		"w   w      w   w" +
 		"wwwwwwwwwwwwwwww"
-	
 }
+
+
+
+
+
+
 var Win = {
 	height: 16,
 	width: 16,
