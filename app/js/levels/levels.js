@@ -38,14 +38,14 @@ var TwoMovesToExit = {
 		"~~~~~~~~~~~~~~~~" +
 		"wwwwwwwwwwwwwwww" +
 		"w              w" +
+		"w *          * w" +
 		"w              w" +
-		"w       *      w" +
 		"w       w      w" +
-		"w  @    w    % w" +
+		"w  @    w   %  w" +
 		"w       w      w" +
-		"w       *      w" +
 		"w              w" +
 		"w              w" +
+		"w *          * w" +
 		"w              w" +
 		"wwwwwwwwwwwwwwww" +
 		"~~~~~~~~~~~~~~~~" +

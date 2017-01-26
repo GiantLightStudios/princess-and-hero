@@ -71,8 +71,8 @@ Actor.prototype.create = function() {
 		this.light = this.game.add.sprite(0,0, "light_circle_orange");
 		// this.light.scale.set(this.actor_type.sprite_scale);
 		// this.light.tint = this.actor_type.sprite_color;
-		this.light.blendMode = PIXI.blendModes.ADD;
-		this.light.alpha = .2;
+		this.light.blendMode = 3;
+		this.light.alpha = .4;
 		this.light.scale.set(.67);
 		
 		this.light.anchor.setTo(.5, .5);
