@@ -195,10 +195,10 @@ var MoveTeachCrazyFlipped = {
 		}
 	],
 	"tile_data": 		
-		"wwwwwwwwwwwwwwww" +
-		"ww           www" +
-		"ww  wwwww    www" +
-		"ww   @ww       w" +
+		"~wwwwwwwwwwwww~~" +
+		"~w           w~~" +
+		"~w  wwwww    www" +
+		"~w   @ww       w" +
 		"wwwwwwwwwwwww  w" +
 		"w              w" +
 		"w              w" +
@@ -207,10 +207,10 @@ var MoveTeachCrazyFlipped = {
 		"w              w" +
 		"w              w" +
 		"w  wwwwwww  wwww" +
-		"w  wwwwwww    ww" +
-		"w     %www    ww" +
-		"w             ww" +
-		"wwwwwwwwwwwwwwww"
+		"w  wwwwwww    w~" +
+		"w     %www    w~" +
+		"w             w~" +
+		"wwwwwwwwwwwwwww~"
 
 
 
@@ -269,7 +269,7 @@ var MoveMaster0Flipped = {
 		"w         wwwwww" +
 		"w             %w" +
 		"wwwwwwwwwwwww  w" +
-		"wwwwwwwwwwwwwwww"
+		"~~~~~~~~~~~~wwww"
 
 }
 
