@@ -534,10 +534,10 @@ var princessTorture01 = {
 		"w  w           w" +
 		"w     wwwwwwwwww" +
 		"w   k ww      pw" +
-		"ww @  w        w" +
+		"w  @  w        w" +
 		"w     d%       w" +
-		"w     w        w" +
-		"w     wp      ww" +
+		"wwwwwww        w" +
+		"wwwwwwwp      ww" +
 		"wwwwwwwwwwwwwwww"
 	
 }
