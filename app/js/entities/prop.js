@@ -38,6 +38,8 @@ Prop.prototype.create = function() {
 	this.square.anchor.set(.5);
 	this.addChild(this.square);
 
+	this.square.alpha = this.prop_type.alpha ? this.prop_type.alpha : 1;
+
 	if(this.prop_type.blendMode){
 		console.log(this.prop_type.blendMode);
 		this.square.blendMode = this.prop_type.blendMode;

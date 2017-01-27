@@ -36,7 +36,7 @@ var PROP_TYPES = {
 	},
 	"flame": {
 		sprite_color: 0xFFFFFF,
-		alpha: .5,
+		alpha: .8,
 		blocks: true,
 		atlas: "flame",
 		sprite_name: null,
