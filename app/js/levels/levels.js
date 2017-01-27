@@ -596,28 +596,89 @@ var JustMovers02 = {
 		"wwwwwwwwwwwww~"
 }
 
-var RooksAndPawns00 = {
+
+
+var MoveTeachMoreRevisitedRooksAndPawns = {
 	height: 16,
 	width: 16,
-	tile_data:
-		"wwwwwwwwwwwwwwww" +
-		"wwwwwwwwwwwwwwww" +
+	"dialogue": [
+		{
+			"speaker": "hero",
+			"text": "We should stick together..."
+		}
+	],
+	"tile_data": 		
+		"~~wwww~~~~~~~~~~" +
+		"www  w~~~~~~~~~~" +
+		"w   @www~~~~~~~~" +
+		"w    w*w~~~~~~~~" +
+		"wp wwwwwwwwwwwww" +
 		"w              w" +
+		"w       w      w" +
+		"w  r    w   r  w" +
+		"w       w      w" +
 		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w              w" +
-		"w   w      w   w" +
-		"w r  @    %  r w" +
-		"w   w      w   w" +
-		"wwwwwwwwwwwwwwww"
+		"wwwwwwwwwwwww pw" +
+		"~~~~~~~~w*w    w" +
+		"~~~~~~~~www%   w" +
+		"~~~~~~~~~~w  www" +
+		"~~~~~~~~~~wwww~~" +
+		"~~~~~~~~~~~~~~~~"
 }
-
+var MoveTeachMoreRevisitedRooksAndPawns02 = {
+	height: 16,
+	width: 16,
+	"dialogue": [
+		{
+			"speaker": "hero",
+			"text": "We should stick together..."
+		}
+	],
+	"tile_data": 		
+		"~~wwww~~~~~~~~~~" +
+		"www  w~~~~~~~~~~" +
+		"w   @www~~~~~~~~" +
+		"w    w*w~~~~~~~~" +
+		"w  wwwwwwwwwwwww" +
+		"w              w" +
+		"w       w     pw" +
+		"w  r    w   r  w" +
+		"wp      w      w" +
+		"w              w" +
+		"wwwwwwwwwwwww  w" +
+		"~~~~~~~~w*w    w" +
+		"~~~~~~~~www%   w" +
+		"~~~~~~~~~~w  www" +
+		"~~~~~~~~~~wwww~~" +
+		"~~~~~~~~~~~~~~~~"
+}
+// var TwoMovesToExitRevisitedRooksAndPawns = {
+// 	height: 16,
+// 	width: 16,
+// 	"dialogue": [
+// 		{
+// 			"speaker": "princess",
+// 			"text": "Follow me!"
+// 		}
+// 	],
+// 	"tile_data": 		
+// 		"~~~~~~~~~~~~~~~~" +
+// 		"~~~~~~~~~~~~~~~~" +
+// 		"wwwwwwwwwwwwwwww" +
+// 		"w              w" +
+// 		"w *          * w" +
+// 		"w  p    r   p  w" +
+// 		"w       w      w" +
+// 		"w  @    w   %  w" +
+// 		"w       w      w" +
+// 		"w              w" +
+// 		"w  p    r   p  w" +
+// 		"w *          * w" +
+// 		"w              w" +
+// 		"wwwwwwwwwwwwwwww" +
+// 		"~~~~~~~~~~~~~~~~" +
+// 		"~~~~~~~~~~~~~~~~"
+// }
 var RooksAndPawns01 = {
 	height: 16,
 	width: 16,
@@ -849,6 +910,9 @@ DungeonDashLevels.push(Chapter3);
 DungeonDashLevels.push(JustMovers00);
 DungeonDashLevels.push(JustMovers01);
 DungeonDashLevels.push(JustMovers02);
+DungeonDashLevels.push(MoveTeachMoreRevisitedRooksAndPawns);
+DungeonDashLevels.push(MoveTeachMoreRevisitedRooksAndPawns02);
+
 // DungeonDashLevels.push(RooksAndPawns00);
 // DungeonDashLevels.push(RooksAndPawns01);
 // DungeonDashLevels.push(RooksAndPawns02);

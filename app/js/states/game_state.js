@@ -13,7 +13,7 @@ DungeonDashGame.GameState.prototype  = {
 		this.game_model.set(this.current_board_index);
 	},
 	preload: function(){
-
+		// this.game.time.advancedTiming = true;
 		//IMAGES
 
 		//primary shapes
@@ -112,7 +112,7 @@ DungeonDashGame.GameState.prototype  = {
 		this.vignette = new Phaser.Sprite(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, "vignette");
 		this.vignette.blendMode = PIXI.blendModes.MULTIPLY;
 		// this.vignette.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
-		this.vignette.alpha = .75;
+		this.vignette.alpha = .55;
 		this.vignette.anchor.set(.5);
 		this.world.add(this.vignette);
 
@@ -141,6 +141,10 @@ DungeonDashGame.GameState.prototype  = {
 	update: function(){
 		var that = this;
 		
+
+//		this.game.debug.text(this.game.time.fps || '--', 2, 14, "#00ff00"); 
+
+
 		if(that.current_board.player.hp<=0 && !that.has_lost){
 			that.lose();
 		}

@@ -47,15 +47,16 @@ Prop.prototype.create = function() {
 	this.scale.set(this.prop_type.scale);
 
 
+
 }
 Prop.prototype.destroy_me_good = function(){
 	this.current_tile.current_prop = null;
 	this.destroy;
 }
-Prop.prototype.update = function() { 
-	if(this.current_tile){
-		this.x = this.current_tile.x;
-		this.y = this.current_tile.y;
-	}
+// Prop.prototype.update = function() { 
+// 	// if(this.current_tile){
+// 	// 	this.x = this.current_tile.x;
+// 	// 	this.y = this.current_tile.y;
+// 	// }
 
-}
+// }

@@ -33,11 +33,11 @@ Pickup.prototype.create = function() {
 
 }
 
-Pickup.prototype.update = function() { 
-	if(this.current_tile){
-		// this.current_tile.square.tint = 0xff0000;
-		this.x = this.current_tile.x;
-		this.y = this.current_tile.y;
-	}
+// Pickup.prototype.update = function() { 
+// 	if(this.current_tile){
+// 		// this.current_tile.square.tint = 0xff0000;
+// 		this.x = this.current_tile.x;
+// 		this.y = this.current_tile.y;
+// 	}
 
-}
+// }

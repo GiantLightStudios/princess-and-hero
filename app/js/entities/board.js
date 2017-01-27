@@ -115,7 +115,7 @@ Board.prototype.create = function() {
 				case " ":
 					break;
 				case "@":
-					this.player = new Actor(this.game, 0,0, this.tile_scale*this.scale_down, t_data);
+					this.player = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					this.player.board = this;
 					this.add(this.player);
 					this.player.current_tile = this.GetTile(y,x);
@@ -123,7 +123,7 @@ Board.prototype.create = function() {
 					this.player.warpToCurrentTile();
 					break;
 				case "%":
-					this.princess = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					this.princess = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					this.princess.board = this;
 					this.add(this.princess);
 					this.princess.current_tile = this.GetTile(y,x);
@@ -132,7 +132,7 @@ Board.prototype.create = function() {
 					this.goal = this.princess;
 					break;
 				case "1":
-					var npc = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					npc.board = this;
 					this.add(npc);
 					npc.current_tile = this.GetTile(y,x);
@@ -142,7 +142,7 @@ Board.prototype.create = function() {
 					this.npcs.push(npc);
 					break;
 				case "#":
-					var npc = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					npc.board = this;
 					this.add(npc);
 					npc.current_tile = this.GetTile(y,x);
@@ -151,7 +151,7 @@ Board.prototype.create = function() {
 					this.npcs.push(npc);
 					break;
 				case "p":
-					var npc = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					npc.board = this;
 					this.add(npc);
 					npc.current_tile = this.GetTile(y,x);
@@ -160,7 +160,7 @@ Board.prototype.create = function() {
 					this.npcs.push(npc);
 					break;
 				case "r":
-					var npc = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					npc.board = this;
 					this.add(npc);
 					npc.current_tile = this.GetTile(y,x);
@@ -171,7 +171,7 @@ Board.prototype.create = function() {
 				
 				//portal
 				case "0":
-					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
 					this.add(prop);
 					prop.current_tile = this.GetTile(y,x);
@@ -188,7 +188,7 @@ Board.prototype.create = function() {
 
 				//wall
 				case "w":
-					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
 					this.add(prop);
 					prop.current_tile = this.GetTile(y,x);
@@ -198,7 +198,7 @@ Board.prototype.create = function() {
 
 				//flame
 				case "*":
-					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
 					this.add(prop);
 					prop.current_tile = this.GetTile(y,x);
@@ -208,7 +208,7 @@ Board.prototype.create = function() {
 
 				//door
 				case "d":
-					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
 					this.add(prop);
 					prop.current_tile = this.GetTile(y,x);
@@ -219,7 +219,7 @@ Board.prototype.create = function() {
 				//pickups
 				case "h":
 				case "k":
-					var pickup = new Pickup(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var pickup = new Pickup(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					pickup.board = this;
 					this.add(pickup);
 					pickup.current_tile = this.GetTile(y,x);
@@ -232,12 +232,17 @@ Board.prototype.create = function() {
 		}
 	}
 
-	this.bringToTop(this.grunge);
 
+
+	this.bringToTop(this.grunge);
 
 	for(var i = 0;i<this.props.length;i++){
 		this.bringToTop(this.props[i]);
 	}
+
+
+
+
 	for(var i = 0;i<this.npcs.length;i++){
 		this.bringToTop(this.npcs[i]);
 		this.npcs[i].eye.target = this.princess;
@@ -416,13 +421,13 @@ Board.prototype.update = function() {
 	for(var i = 0;i<this.npcs.length;i++){
 		this.npcs[i].update();
 	}
-	for(var i = 0;i<this.pickups.length;i++){
-		this.pickups[i].update();
-	}
-	for(var i = 0;i<this.props.length;i++){
-		this.props[i].update();
-	}
-	for(var i = 0;i<this.props_above.length;i++){
-		this.props_above[i].update();
-	}
+	// for(var i = 0;i<this.pickups.length;i++){
+	// 	this.pickups[i].update();
+	// }
+	// for(var i = 0;i<this.props.length;i++){
+	// 	this.props[i].update();
+	// }
+	// for(var i = 0;i<this.props_above.length;i++){
+	// 	this.props_above[i].update();
+	// }
 }

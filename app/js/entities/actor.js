@@ -71,7 +71,7 @@ Actor.prototype.create = function() {
 		this.light = this.game.add.sprite(0,0, "light_circle_orange");
 		// this.light.scale.set(this.actor_type.sprite_scale);
 		// this.light.tint = this.actor_type.sprite_color;
-		this.light.blendMode = 3;
+		this.light.blendMode = 1;
 		this.light.alpha = .4;
 		this.light.scale.set(.67);
 		
@@ -120,9 +120,9 @@ Actor.prototype.update = function() {
 	if(this.eye){
 		this.eye.update();
 	}
-	if(this.body){
-		this.game.debug.body(this.body);
-	}
+	// if(this.body){
+	// 	this.game.debug.body(this.body);
+	// }
 }
 Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 

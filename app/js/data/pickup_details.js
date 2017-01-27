@@ -12,9 +12,9 @@ var PICKUP_TYPES = {
 	},
 	"key": {
 		sprite_color: 0xf0ad4e,
-		atlas: "key",
-		sprite_name: null,
-		scale: 1,
+		atlas: "all_sprites",
+		sprite_name: "key",
+		scale: 6,
 		onPickup: function(actor){
 			actor.keys++;
 			actor.actor_model.set("keys", actor.keys);
