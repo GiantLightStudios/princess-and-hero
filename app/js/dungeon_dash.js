@@ -22,11 +22,12 @@ DungeonDashGame.wait = function(condition, callback, maxwait, tick) {
 
 DungeonDashGame.InitializeGame = function(id){
 	if(DungeonDashGame.game){
-		this.game.state.start("GameState", true, false, id);		
+		DungeonDashGame.game.state.states[DungeonDashGame.game.state.current].loadBoard(id);
+		// this.game.state.start("GameState", true, false, id);	
 
 	}else{
 
-		DungeonDashGame.game = new Phaser.Game(1024, 1024, Phaser.AUTO, 'canvas-wrapper', {
+		DungeonDashGame.game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '', {
 
 			init: function(){
 				console.log("game.init");
@@ -37,12 +38,12 @@ DungeonDashGame.InitializeGame = function(id){
 				console.log("game.preload");
 			},
 			create: function(){ 
-				console.log("game.create");		
+				console.log("game.create");
 
 
 				// this.game.kineticScrolling = game.plugins.add(Phaser.Plugin.KineticScrolling);		
-				// this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-				this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+				this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+				// this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
 				this.game.state.add("GameState", DungeonDashGame.GameState);		
 				this.game.state.start("GameState", true, false, id);		

@@ -16,19 +16,24 @@ var PROP_TYPES = {
 		}
 	},
 	"door": {
-		sprite_color: 0x8b754b,
+		sprite_color: 0x8f5d38,
 		blocks: true,
 		atlas: "all_sprites",
-		sprite_name: "wall",
+		sprite_name: "door",
 		scale: .75,
 		onCollide: function(actor, prop, board){
 			// console.log("collide w/ door", actor, prop);
-			if(actor.keys>=1){
-				actor.keys--;
-				actor.actor_model.set("keys", actor.keys);
-				prop.current_tile.current_prop = null;
-				prop.destroy();
+			for(var i = 0;i<actor.held_items.length;i++){
+				if(actor.held_items[i].pickup_type.name == "key"){
+					console.log(i);
+					actor.held_items[i].destroy();
+					actor.held_items.splice(i, 1);
+
+					prop.current_tile.current_prop = null;
+					prop.destroy();
+				}
 			}
+
 		},
 		onEnter: function(actor){
 

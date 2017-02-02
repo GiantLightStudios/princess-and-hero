@@ -1,8 +1,9 @@
-Prop = function(game, x, y, scale, p_type){
+Prop = function(game, x, y, scale, p_type, color){
 	Phaser.Sprite.call(this, game);
 	this.game = game;
 	this.x = x;
 	this.y = y;
+	this.color = color;
 	this.tile_scale = scale;
 	this.prop_type = null;
 	switch(p_type){
@@ -34,7 +35,11 @@ Prop.prototype.constructor = Prop;
 
 Prop.prototype.create = function() { 
 	this.square = this.game.add.sprite(0,0, this.prop_type.atlas, this.prop_type.sprite_name);
-	this.square.tint = this.prop_type.sprite_color;
+	if(this.color){
+		this.square.tint = this.color;
+	}else{
+		this.square.tint = this.prop_type.sprite_color;
+	}
 	this.square.anchor.set(.5);
 	this.addChild(this.square);
 

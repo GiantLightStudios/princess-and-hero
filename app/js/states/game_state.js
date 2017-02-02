@@ -6,6 +6,12 @@ DungeonDashGame.GameState = function(game){
 	this.hudView = new DungeonDashGame.HudView({"el": "#hud-wrapper", "gameState": this});
 
 	this.game_model = new GameModel();
+
+
+	this.filter = [];
+	this.FILTER_VIGNETTE = 0;
+	this.FILTER_FILMGRAIN = 1;
+	this.FILTER_SNOISE = 2;
 }
 DungeonDashGame.GameState.prototype  = {
 	init: function(current_board_index){
@@ -14,6 +20,20 @@ DungeonDashGame.GameState.prototype  = {
 	},
 	preload: function(){
 		// this.game.time.advancedTiming = true;
+
+
+
+
+		//SCRIPTS/FILTERS/PLUGINS
+	    this.load.script('filter-vignette', 'js/vendor/phaser-filterkit-master/src/Vignette.js');
+	    //this.load.script('filter-snoise', '../src/SNoise.js');
+	    this.load.script('filter-filmgrain', 'js/vendor/phaser-filterkit-master/src/FilmGrain.js');
+
+
+
+
+
+
 		//IMAGES
 
 		//primary shapes
@@ -40,7 +60,16 @@ DungeonDashGame.GameState.prototype  = {
 
 		//overlay elements
 		this.game.load.image("vignette", "img/vignette.png");
-		this.game.load.image("grunge", "img/grunge.png");
+		
+		this.game.load.image("forest_grunge", "img/overlays/leaves_styled.png");
+		this.game.load.image("dungeon_grunge", "img/grunge.png");
+
+		this.game.load.image("greyscale_natural_grunge3", "img/1096-greyscale-natural-grunge-textures/greyscale_natural_grunge3.jpg");
+		this.game.load.image("greyscale_natural_grunge4", "img/1096-greyscale-natural-grunge-textures/greyscale_natural_grunge4.jpg");
+		this.game.load.image("greyscale_natural_grunge5", "img/1096-greyscale-natural-grunge-textures/greyscale_natural_grunge5.jpg");
+		this.game.load.image("greyscale_natural_grunge6", "img/1096-greyscale-natural-grunge-textures/greyscale_natural_grunge6.jpg");
+		
+		this.game.load.image("scrapbooking_01", "img/vintage-seamless-digital-scrapbooking-paper-textures/vintage-seamless-digital-scrapbooking-paper-textures-001-01.jpg");
 
 
 		//AUDIO
@@ -59,7 +88,7 @@ DungeonDashGame.GameState.prototype  = {
 		//http://tones.wolfram.com/generate/GuEXwBaJgI0LSF4elOs8JIqmYGD0YiFPGNk3ChC9Jxy4
 		this.game.load.audio("bg-music", "audio/music/NKM-G-25-31-925709975-1-31537-30-40-3-2394-50-0-10-102-69-540-47-350-0-0-0-0-0.mp3");
 		
-		http://tones.wolfram.com/generate/GRPiC6IJmSNGhj4dyTsrdcxYG0qylRibWvAxQelZqxFbsI
+		// http://tones.wolfram.com/generate/GRPiC6IJmSNGhj4dyTsrdcxYG0qylRibWvAxQelZqxFbsI
 		this.game.load.audio("boss-music", "audio/music/NKM-G-25-31-254543185-1-20654-40-40-3-3680-32-0-10-203-69-122-70-101-0-0-47-127-0.wav")
 		
 
@@ -81,9 +110,18 @@ DungeonDashGame.GameState.prototype  = {
 
 
 
+		this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 		// game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-		this.game.stage.backgroundColor = '#000';
+		this.game.stage.backgroundColor = '#ccc';
 		this.world = this.game.add.group();
+
+
+		this.behindAll = new Phaser.Sprite(this.game, 0,0, "square");
+		this.behindAll.anchor.set(.5);
+		this.behindAll.scale.set(50);
+		this.behindAll.tint = 0xcccccc;
+		this.behindAll.alpha = 1;
+		this.world.add(this.behindAll);
 
 
 		this.aboveAll = this.game.add.group();
@@ -106,19 +144,27 @@ DungeonDashGame.GameState.prototype  = {
 
 
 
+ 		this.filter[this.FILTER_VIGNETTE] = this.game.add.filter('Vignette');
+	    this.filter[this.FILTER_VIGNETTE].size = 0.03;
+	    this.filter[this.FILTER_VIGNETTE].amount = 2.5;
+	    this.filter[this.FILTER_VIGNETTE].alpha = 1;
 
 
+	    this.filter[this.FILTER_FILMGRAIN] = this.game.add.filter('FilmGrain');
+	    this.filter[this.FILTER_FILMGRAIN].color = 0.6;
+	    this.filter[this.FILTER_FILMGRAIN].amount = .04;
+	    this.filter[this.FILTER_FILMGRAIN].luminance = 0.8;
 
-		this.vignette = new Phaser.Sprite(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, "vignette");
-		this.vignette.blendMode = PIXI.blendModes.MULTIPLY;
-		// this.vignette.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
-		this.vignette.alpha = .55;
-		this.vignette.anchor.set(.5);
-		this.world.add(this.vignette);
-
-
+		this.game.stage.filters = [this.filter[this.FILTER_FILMGRAIN], this.filter[this.FILTER_VIGNETTE]];
+		// this.vignette = new Phaser.Sprite(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, "vignette");
+		// this.vignette.blendMode = PIXI.blendModes.MULTIPLY;
+		// this.vignette.scale.set(2);
+		// this.vignette.alpha = .55;
+		// this.vignette.anchor.set(.5);
+		// this.world.add(this.vignette);
 
 		this.loadBoard(this.current_board_index);
+
 
 
 		this.resize();
@@ -140,9 +186,22 @@ DungeonDashGame.GameState.prototype  = {
 
 	update: function(){
 		var that = this;
-		
 
-//		this.game.debug.text(this.game.time.fps || '--', 2, 14, "#00ff00"); 
+
+	    var f = this.filter[this.FILTER_FILMGRAIN];
+	    /*
+	    f.amount += 0.01 * direction;
+	    if (f.amount <= 0) {
+	        f.amount = 0;
+	        direction = 1;
+	    } else if (f.amount >= 1.0) {
+	        f.amount = 1.0;
+	        direction = -1;
+	    }
+	    */
+
+	    f.update();
+
 
 
 		if(that.current_board.player.hp<=0 && !that.has_lost){
@@ -150,30 +209,6 @@ DungeonDashGame.GameState.prototype  = {
 		}
 
 		if(this.moveClear){
-
-			// if(this.cursors.up.isDown){
-			// 	// this.current_board.player.slide(0, 1);
-			// 	this.current_board.slide(0,1);
-			// 	this.moveClear = false;
-			// }
-			// else if(this.cursors.down.isDown){
-			// 	// this.current_board.player.slide(0, -1);
-			// 	this.current_board.slide(0,-1);
-			// 	this.moveClear = false;
-
-			// }
-			// else if(this.cursors.right.isDown){
-			// 	// this.current_board.player.slide(1, 0);
-			// 	this.current_board.slide(1,0);
-			// 	this.moveClear = false;
-
-			// }
-			// else if(this.cursors.left.isDown){
-			// 	// this.current_board.player.slide(-1, 0);
-			// 	this.current_board.slide(-1,0);
-			// 	this.moveClear = false;
-
-			// }
 
 			var direction = this.swipe.check();
 			if(direction!==null){
@@ -300,7 +335,7 @@ DungeonDashGame.GameState.prototype  = {
 		});
 
 
-		this.world.bringToTop(this.vignette);
+		// this.world.bringToTop(this.vignette);
 
 
 
@@ -313,6 +348,9 @@ DungeonDashGame.GameState.prototype  = {
 		this.inTween.onComplete.add(function(){
 			that.game.tweens.remove(that.inTween);
 		});
+		
+		this.behindAll.tint = this.current_board.board_type.background_color;
+
 		this.has_lost = false;
 		this.inTween.start();
 	},
@@ -320,20 +358,33 @@ DungeonDashGame.GameState.prototype  = {
 		this.hudView.render();
 	},
 	resize: function(){
+
 		console.log("game_state.resize");
+
+		// var lGameScale=Math.round(10000 * Math.min(this.game.width/SAFE_ZONE_WIDTH,this.game.height / SAFE_ZONE_HEIGHT)) / 10000;
+		// this.world.scale.setTo (lGameScale,lGameScale);
+		// this.world.x=(this.game.width-SAFE_ZONE_WIDTH*lGameScale)/2;
+		// this.world.y=(this.game.height-SAFE_ZONE_HEIGHT*lGameScale)/2;
+
 
 
 		var lGameScale=Math.round(10000 * Math.min(this.game.width/SAFE_ZONE_WIDTH, this.game.height / SAFE_ZONE_HEIGHT)) / 10000;
-		lGameScale *= 16/this.current_board.board_width;
-		lGameScale *= .87;
-
-		this.vignette.scale.set(this.current_board.board_width/16);
-
+		if(this.current_board){
+			lGameScale *= 16/this.current_board.board_width;
+			// this.vignette.scale.set(this.current_board.board_width/16);
+		}
 
 		this.game.global_scale = lGameScale;
 		this.world.scale.setTo (lGameScale,lGameScale);
 		this.world.x=(this.game.width-SAFE_ZONE_WIDTH*lGameScale)/2;
 		this.world.y=(this.game.height-SAFE_ZONE_HEIGHT*lGameScale)/2;
+
+		if(this.current_board){
+			this.current_board.resize();
+		}
+
+		this.game.stage.filterArea = new Phaser.Rectangle(0,0,this.game.width, this.game.height);
+
 	},
 	lose: function(){
 		var that = this;

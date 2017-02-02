@@ -32,6 +32,13 @@ Pickup.prototype.create = function() {
 
 
 }
+Pickup.prototype.onPickup = function(actor){
+		this.pickup_type.onPickup(actor);
+		actor.held_items.push(this);
+		actor.addChild(this);
+		this.x = 0;
+		this.y = 0;
+}
 
 // Pickup.prototype.update = function() { 
 // 	if(this.current_tile){
