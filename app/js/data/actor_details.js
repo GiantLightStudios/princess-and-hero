@@ -59,7 +59,7 @@ var ACTOR_TYPES = {
 	"boss1": {
 		atlas: "triangle",
 		sprite_name: null,
-		can_activate: false,
+		can_activate: true,
 		can_slide: true,
 		move_limit: 1,
 		hp: 10,
@@ -73,6 +73,7 @@ var ACTOR_TYPES = {
 		atlas: "all_sprites",
 		sprite_name: "rook",
 		can_activate: false,
+		can_pickup: true,
 		can_slide: true,
 		hp: 1,
 		damage: 1,

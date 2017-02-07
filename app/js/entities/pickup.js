@@ -32,12 +32,19 @@ Pickup.prototype.create = function() {
 
 
 }
-
-Pickup.prototype.update = function() { 
-	if(this.current_tile){
-		// this.current_tile.square.tint = 0xff0000;
-		this.x = this.current_tile.x;
-		this.y = this.current_tile.y;
-	}
-
+Pickup.prototype.onPickup = function(actor){
+		this.pickup_type.onPickup(actor);
+		actor.held_items.push(this);
+		actor.addChild(this);
+		this.x = 0;
+		this.y = 0;
 }
+
+// Pickup.prototype.update = function() { 
+// 	if(this.current_tile){
+// 		// this.current_tile.square.tint = 0xff0000;
+// 		this.x = this.current_tile.x;
+// 		this.y = this.current_tile.y;
+// 	}
+
+// }

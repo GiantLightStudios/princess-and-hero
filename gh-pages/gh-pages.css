@@ -1,0 +1,13 @@
+.hero{
+	position:relative;
+}
+.hero img{
+	width:100%;
+}
+
+.hero .btn-lg	{
+	position:absolute;
+	right:1em;
+	bottom:1em;
+
+}

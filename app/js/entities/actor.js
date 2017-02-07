@@ -50,6 +50,7 @@ Actor = function(game, x, y, tile_scale, a_type){
 	this.game.add.existing(this);
 	this.create();
 	this.timer = this.game.time.create(false);
+	this.held_items = [];
 	this.timer.start();
 }
 
@@ -71,7 +72,7 @@ Actor.prototype.create = function() {
 		this.light = this.game.add.sprite(0,0, "light_circle_orange");
 		// this.light.scale.set(this.actor_type.sprite_scale);
 		// this.light.tint = this.actor_type.sprite_color;
-		this.light.blendMode = 3;
+		this.light.blendMode = 1;
 		this.light.alpha = .4;
 		this.light.scale.set(.67);
 		
@@ -120,9 +121,9 @@ Actor.prototype.update = function() {
 	if(this.eye){
 		this.eye.update();
 	}
-	if(this.body){
-		this.game.debug.body(this.body);
-	}
+	// if(this.body){
+	// 	this.game.debug.body(this.body);
+	// }
 }
 Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 
@@ -152,9 +153,9 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 
 			//if the actor can pick up, and neighbor has a pickup, pickit up
 			if(this.actor_type.can_pickup && neighbor.current_pickup){
-				neighbor.current_pickup.pickup_type.onPickup(this);
-				neighbor.current_pickup.destroy();
+				neighbor.current_pickup.onPickup(this);
 				neighbor.current_pickup = null;
+
 			}
 
 			//if the neighbor has an actor on it, attack, resolve attack
@@ -330,7 +331,13 @@ Actor.prototype.Blink = function(color){
 
 Actor.prototype.die = function(){
 
-
+	for(var i = 0;i<this.held_items.length;i++){
+		var item = this.held_items[i];
+		this.board.addChild(item);
+		this.current_tile.current_pickup = item;
+		item.x = this.current_tile.x;
+		item.y = this.current_tile.y;
+	}
 
 	this.isDead = true;
 	if(this.board){

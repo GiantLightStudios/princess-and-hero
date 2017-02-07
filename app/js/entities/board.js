@@ -26,7 +26,9 @@ Board = function(game, x, y, tile_scale, level_data_index){
 	else
 		this.board_data = DungeonDashLevels[0];
 
+	this.board_type = BOARD_TYPES[this.board_data.board_type];
 
+	console.log(this.board_type);
 	this.timer = this.game.time.create(false);
 
 	this.game.add.existing(this);
@@ -57,10 +59,12 @@ Board.prototype.create = function() {
 
 
 
-	this.grunge = new Phaser.Sprite(this.game, 0, 0, "grunge");
+	this.grunge = new Phaser.TileSprite(this.game, 0, 0, this.game.width, this.game.height, this.board_type.grunge_sprite);
+	this.grunge.tileScale.set(this.board_type.grunge_scale);
+
 	// this.grunge.scale.set(SAFE_ZONE_WIDTH/1024, SAFE_ZONE_HEIGHT/1024);
 	this.grunge.anchor.set(.5);
-	this.grunge.alpha = .4;
+	this.grunge.alpha = this.board_type.grunge_alpha;
 	this.grunge.blendMode = PIXI.blendModes.MULTIPLY;
 	this.add(this.grunge);
 
@@ -74,12 +78,13 @@ Board.prototype.create = function() {
 
 
 
-			var tile_color = 0x474747;
+			var tile_color = this.board_type.light_tile_color;
+			var tile_alpha = 1;
 			if((y%2==0 && x%2==0) || (y%2==1 && x%2==1) ){
-				tile_color = 0x363636;
+				tile_color = this.board_type.dark_tile_color;
 			}
 			if(t_data == "~"){
-				tile_color = 0x000000;
+				tile_alpha = 0;
 			}
 
 			var x_loc = x-(this.board_width/2);
@@ -99,7 +104,7 @@ Board.prototype.create = function() {
 			this.add(new_tile);
 			new_tile.x = x_pos;
 			new_tile.y = y_pos;
-
+			new_tile.alpha = tile_alpha;
 			new_tile.ind_x = x;
 			new_tile.ind_y = y;
 			this.SetTile(y, x, new_tile);
@@ -115,7 +120,7 @@ Board.prototype.create = function() {
 				case " ":
 					break;
 				case "@":
-					this.player = new Actor(this.game, 0,0, this.tile_scale*this.scale_down, t_data);
+					this.player = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					this.player.board = this;
 					this.add(this.player);
 					this.player.current_tile = this.GetTile(y,x);
@@ -123,7 +128,7 @@ Board.prototype.create = function() {
 					this.player.warpToCurrentTile();
 					break;
 				case "%":
-					this.princess = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					this.princess = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					this.princess.board = this;
 					this.add(this.princess);
 					this.princess.current_tile = this.GetTile(y,x);
@@ -132,7 +137,7 @@ Board.prototype.create = function() {
 					this.goal = this.princess;
 					break;
 				case "1":
-					var npc = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					npc.board = this;
 					this.add(npc);
 					npc.current_tile = this.GetTile(y,x);
@@ -142,7 +147,7 @@ Board.prototype.create = function() {
 					this.npcs.push(npc);
 					break;
 				case "#":
-					var npc = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					npc.board = this;
 					this.add(npc);
 					npc.current_tile = this.GetTile(y,x);
@@ -151,7 +156,7 @@ Board.prototype.create = function() {
 					this.npcs.push(npc);
 					break;
 				case "p":
-					var npc = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					npc.board = this;
 					this.add(npc);
 					npc.current_tile = this.GetTile(y,x);
@@ -160,7 +165,7 @@ Board.prototype.create = function() {
 					this.npcs.push(npc);
 					break;
 				case "r":
-					var npc = new Actor(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					npc.board = this;
 					this.add(npc);
 					npc.current_tile = this.GetTile(y,x);
@@ -171,7 +176,7 @@ Board.prototype.create = function() {
 				
 				//portal
 				case "0":
-					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
 					this.add(prop);
 					prop.current_tile = this.GetTile(y,x);
@@ -188,7 +193,7 @@ Board.prototype.create = function() {
 
 				//wall
 				case "w":
-					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data, this.board_type.wall_color);
 					prop.board = this;
 					this.add(prop);
 					prop.current_tile = this.GetTile(y,x);
@@ -198,7 +203,7 @@ Board.prototype.create = function() {
 
 				//flame
 				case "*":
-					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
 					this.add(prop);
 					prop.current_tile = this.GetTile(y,x);
@@ -208,7 +213,7 @@ Board.prototype.create = function() {
 
 				//door
 				case "d":
-					var prop = new Prop(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					prop.board = this;
 					this.add(prop);
 					prop.current_tile = this.GetTile(y,x);
@@ -219,7 +224,7 @@ Board.prototype.create = function() {
 				//pickups
 				case "h":
 				case "k":
-					var pickup = new Pickup(this.game, 0, 0, this.tile_scale*this.scale_down, t_data);
+					var pickup = new Pickup(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					pickup.board = this;
 					this.add(pickup);
 					pickup.current_tile = this.GetTile(y,x);
@@ -232,12 +237,17 @@ Board.prototype.create = function() {
 		}
 	}
 
-	this.bringToTop(this.grunge);
+
 
 
 	for(var i = 0;i<this.props.length;i++){
 		this.bringToTop(this.props[i]);
 	}
+	this.bringToTop(this.grunge);
+
+
+
+
 	for(var i = 0;i<this.npcs.length;i++){
 		this.bringToTop(this.npcs[i]);
 		this.npcs[i].eye.target = this.princess;
@@ -407,6 +417,12 @@ Board.prototype.Win = function(){
 
 
 }
+
+Board.prototype.resize = function(){
+	console.log("board.resize()");
+	this.grunge.width = (this.game.width/this.parent.scale.x);
+	this.grunge.height = (this.game.height/this.parent.scale.y);
+}
 Board.prototype.update = function() { 
 	if(this.player)
 		this.player.update();
@@ -416,13 +432,13 @@ Board.prototype.update = function() {
 	for(var i = 0;i<this.npcs.length;i++){
 		this.npcs[i].update();
 	}
-	for(var i = 0;i<this.pickups.length;i++){
-		this.pickups[i].update();
-	}
-	for(var i = 0;i<this.props.length;i++){
-		this.props[i].update();
-	}
-	for(var i = 0;i<this.props_above.length;i++){
-		this.props_above[i].update();
-	}
+	// for(var i = 0;i<this.pickups.length;i++){
+	// 	this.pickups[i].update();
+	// }
+	// for(var i = 0;i<this.props.length;i++){
+	// 	this.props[i].update();
+	// }
+	// for(var i = 0;i<this.props_above.length;i++){
+	// 	this.props_above[i].update();
+	// }
 }
