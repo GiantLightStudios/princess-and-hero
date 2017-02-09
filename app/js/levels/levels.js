@@ -714,6 +714,8 @@ var JustMovers00 = {
 // 		"~wwwwwwwwwwww~"
 // }
 
+
+//possible to get stuck
 var JustMovers01 = {
 	board_type: "dungeon",
 	height: 15,
@@ -736,7 +738,7 @@ var JustMovers01 = {
 		"w             w" +
 		"w             w" +
 		"w             w" +
-		"w  www r www  w" +
+		"w wwww r wwww w" +
 		"w  w*wwwww*w  w" +
 		"w% www~~~www @w" +
 		"wwww~~~~~~~wwww"
@@ -768,6 +770,9 @@ var JustMovers02 = {
 		"~wwwwwwwwwwwww~"
 }
 
+
+
+//insert one where you have to 'catch' 2 movers
 
 
 var RooksAndPawns00 = {
@@ -843,8 +848,8 @@ var RooksAndPawns02 = {
 		}
 	],
 	tile_data:
-		"~~www~~~~~~~~~" +
-		"~ww wwwwwwwwww" +
+		"~wwww~~~~~~~~~" +
+		"~wp wwwwwwwwww" +
 		"~w     @    pw" +
 		"www wwwwwww ww" +
 		"w*www     w w~" +
@@ -876,22 +881,43 @@ var RooksAndPawnsAndKeys00 = {
 		"w         w    w" +
 		"w         w    w" +
 		"w         w    w" +
-		"w    w     r   w" +
+		"w    w         w" +
 		"w wwww   wwwwwww" +
 		"w         w    w" +
+		"w         w kr w" +
 		"w         w    w" +
-		"w         w   kw" +
-		"w  w  @   p    w" +
+		"w  w  p        w" +
 		"w  wwww  wwwwwww" +
+		"w        pw    w" +
 		"w         w    w" +
 		"w         w    w" +
-		"wr        w    w" +
-		"wk   p    d%   w" +
+		"w        %d@   w" +
 		"wwwwwwwwwwwwwwww"
 }
-// DungeonDashLevels.push(emptyLevel);
-// DungeonDashLevels.push(omegaTest);
 
+//todo: use monster to pickup key and open door
+var RooksAndPawnsAndKeys01 = {
+	board_type: "dungeon",
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"w         w    w" +
+		"w         w    w" +
+		"w         w    w" +
+		"w    w         w" +
+		"w wwww   wwwwwww" +
+		"w         w    w" +
+		"w         w kr w" +
+		"w         w    w" +
+		"w  w  p        w" +
+		"w  wwww  wwwwwww" +
+		"w        pw    w" +
+		"w         w    w" +
+		"w         w    w" +
+		"w        %d@   w" +
+		"wwwwwwwwwwwwwwww"
+}
 
 //start of act 1
 //hero and princess on the lamb, caught
@@ -901,7 +927,6 @@ DungeonDashLevels.push(ThreeMovesToExit);
 DungeonDashLevels.push(MoveTeachMore);
 DungeonDashLevels.push(MoveTeachCrazySimpler);
 DungeonDashLevels.push(MoveTeachCrazyFlipped);
-// DungeonDashLevels.push(MoveMaster0);
 DungeonDashLevels.push(CombatStart0);
 DungeonDashLevels.push(CombatStart3);
 DungeonDashLevels.push(CombatStart4);
@@ -934,7 +959,8 @@ DungeonDashLevels.push(BossFight02);
 
 //start of act 3
 //princess and hero have escaped the prison, but are now being chased
-//introduce green moving mobs, fluency with keys and doors (chained keys?)
+//introduce green moving mobs, fluency with keys and doors (chained keys? need one key to unlock door to get next key)
+
 
 DungeonDashLevels.push(Chapter3);
 
@@ -946,7 +972,16 @@ DungeonDashLevels.push(RooksAndPawns00);
 DungeonDashLevels.push(RooksAndPawns01);
 DungeonDashLevels.push(RooksAndPawns02);
 
-// DungeonDashLevels.push(RooksAndPawnsAndKeys00);
+
+//use monster to pickup key
+DungeonDashLevels.push(RooksAndPawnsAndKeys00);
+
+//use monster to pickup key and open door
+//DungeonDashLevels.push(RooksAndPawnsAndKeys01);
+
+//use monster to pickup key, open door, so player can pickup second key
+//DungeonDashLevels.push(RooksAndPawnsAndKeys02);
+
 // DungeonDashLevels.push(RooksAndPawnsAndKeys01);
 // DungeonDashLevels.push(RooksAndPawnsAndKeys02);
 // DungeonDashLevels.push(BossFight03);
