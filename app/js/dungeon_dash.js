@@ -45,8 +45,10 @@ DungeonDashGame.InitializeGame = function(id){
 				this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
 				// this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-				this.game.state.add("GameState", DungeonDashGame.GameState);		
-				this.game.state.start("GameState", true, false, id);		
+				this.game.state.add("BootState", DungeonDashGame.BootState);
+				this.game.state.add("SplashState", DungeonDashGame.SplashState);
+				this.game.state.add("GameState", DungeonDashGame.GameState);
+				this.game.state.start("BootState", true, false, id);		
 
 			},
 			resize: function(){
