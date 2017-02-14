@@ -104,7 +104,7 @@ DungeonDashGame.SplashState.prototype  = {
 	},
 	create: function(){
 		var that = this;
-		this.state.start('GameState');
+		this.state.start('GameState', true, false, this.current_board_index);
 	},
 
 	update: function(){
