@@ -26,13 +26,18 @@ DungeonDashGame.SplashState.prototype  = {
 	 	this.loaderBg.anchor.setTo(0, .5);
 	 	this.loaderBar.anchor.setTo(0, .5);
 
-	 	this.loaderBar.width = this.loaderBg.width = 256;
-	 	this.loaderBar.height = this.loaderBg.height = 16;
+	 	this.loaderBg.width = 256;
+	 	this.loaderBar.width = 256;
+
+	 	this.loaderBg.height = 8;
+	 	this.loaderBar.height = 8;
 
 	 	this.loaderBar.x = this.loaderBg.x = this.game.world.centerX-128;
 
-	 	this.loaderBg.tint = "0x999999";
-	    this.game.load.setPreloadSprite(this.loaderBar)
+	 	this.loaderBg.tint = "0x333333";
+	 	this.loaderBar.tint = "0xdfdfdf";
+	    this.game.load.setPreloadSprite(this.loaderBar);
+	 	this.loaderBar.height = 8;
 
 		//IMAGES
 
