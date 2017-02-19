@@ -32,11 +32,12 @@ DungeonDashGame.SplashState.prototype  = {
 	 	this.loaderBg.height = 8;
 	 	this.loaderBar.height = 8;
 
-	 	this.loaderBar.x = this.loaderBg.x = this.game.world.centerX-128;
+	 	this.loaderBar.x = this.loaderBg.x = this.game.world.centerX - 128;
 
 	 	this.loaderBg.tint = "0x333333";
 	 	this.loaderBar.tint = "0xdfdfdf";
 	    this.game.load.setPreloadSprite(this.loaderBar);
+	 	this.loaderBar.width = 1;
 	 	this.loaderBar.height = 8;
 
 		//IMAGES

@@ -41,6 +41,7 @@ DungeonDashGame.BootState.prototype  = {
 	},
 	create: function(){
 
+
 		var that = this;
 	      this.state.start('SplashState', true, false, this.boardIndex);
 
