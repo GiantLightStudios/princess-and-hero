@@ -29,7 +29,12 @@ DungeonDashGame.InitializeGame = function(board_index){
 	if(!board_index){
 		board_index = 0;
 
+
 		var lastCompletedLevel = localStorage.getItem("last-level-completed");
+		console.log(lastCompletedLevel);
+		if(lastCompletedLevel === null)
+			lastCompletedLevel = -1;
+
 		if(lastCompletedLevel){
 			board_index = parseInt(lastCompletedLevel) + 1;
 		}
