@@ -191,6 +191,12 @@ DungeonDashGame.GameState.prototype  = {
 	},
 	transitionToLevel: function(index, delay){
 		var that = this;
+
+		if(index>=DungeonDashLevels.length){
+			index = 0;
+		}
+
+
 		this.world.bringToTop(this.transitionCoverOut);
 
 		if(delay == null)
@@ -216,7 +222,12 @@ DungeonDashGame.GameState.prototype  = {
 		console.log("UP");
 	},
 	loadBoard: function(index){
+
 		var that = this;
+
+		if(index>=DungeonDashLevels.length){
+			index = 0;
+		}
 		this.game.world.bringToTop(this.aboveAll);
 		if(this.transitionCoverIn){
 			this.transitionCoverIn.alpha = 100;
