@@ -62,7 +62,7 @@ var ACTOR_TYPES = {
 		can_activate: true,
 		can_slide: true,
 		move_limit: 1,
-		hp: 10,
+		hp: 3,
 		damage: 1,
 		sprite_scale: -.09,
 		sprite_color: 0xc9302c,

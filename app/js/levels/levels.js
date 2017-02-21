@@ -941,6 +941,48 @@ var RooksAndPawnsAndKeys02 = {
 		"ww            ww" +
 		"~wwwwwwwwwwwwww~"
 }
+
+
+//todo: use monster to pickup key and open door
+var BossFight03_TINY = {
+	board_type: "dungeon",
+	height: 9,
+	width: 13,
+	tile_data:
+		"~~~~~~~~~~~~~" +
+		"~~~~~~~~~~~~~" +
+		"~wwwwwwwwwww~" +
+		"ww        @ww" +
+		"w  r    1   w" +
+		"w    r*     w" +
+		"w      r    w" +
+		"w %        pw" +
+		"wwwwwwwwwwwww"
+}
+
+
+var BossFight03 = {
+	board_type: "dungeon",
+	height: 16,
+	width: 16,
+	tile_data:
+		"~wwwwwwwwwwwwww~" +
+		"ww   w        ww" +
+		"w p 1w         w" +
+		"w   %w    *    w" +
+		"wwwwdw      r  w" +
+		"wp   w r      kw" +
+		"w              w" +
+		"w      r       w" +
+		"w              w" +
+		"wdwwwwwwwwwwwwww" +
+		"w@           kww" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"ww            ww" +
+		"~wwwwwwwwwwwwww~"
+}
 //start of act 1
 //hero and princess on the lamb, caught
 DungeonDashLevels.push(Chapter1);
@@ -994,19 +1036,12 @@ DungeonDashLevels.push(RooksAndPawns00);
 DungeonDashLevels.push(RooksAndPawns01);
 DungeonDashLevels.push(RooksAndPawns02);
 
+DungeonDashLevels.push(RooksAndPawnsAndKeys00); //use monster to pickup key
+DungeonDashLevels.push(RooksAndPawnsAndKeys01); //use monster to pickup key and open door
+DungeonDashLevels.push(RooksAndPawnsAndKeys02); //use monster to pickup key, open door, so player can pickup second key
 
-//use monster to pickup key
-DungeonDashLevels.push(RooksAndPawnsAndKeys00);
-
-//use monster to pickup key and open door
-DungeonDashLevels.push(RooksAndPawnsAndKeys01);
-
-//use monster to pickup key, open door, so player can pickup second key
-DungeonDashLevels.push(RooksAndPawnsAndKeys02);
-
-// DungeonDashLevels.push(RooksAndPawnsAndKeys01);
-// DungeonDashLevels.push(RooksAndPawnsAndKeys02);
 // DungeonDashLevels.push(BossFight03);
+DungeonDashLevels.push(BossFight03);
 
 //end of act 3
 
