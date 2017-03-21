@@ -30,7 +30,7 @@ var TILE_TYPES = {
 			}
 		},
 		onEnter: function(actor, tile, board){
-		},
+		}
 
 	}
 

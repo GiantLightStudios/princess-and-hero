@@ -26,12 +26,11 @@ DungeonDashGame.SaveGame = function(){
 
 
 DungeonDashGame.InitializeGame = function(board_index){
-	if(!board_index){
+	if(board_index === undefined){
 		board_index = 0;
 
 
 		var lastCompletedLevel = localStorage.getItem("last-level-completed");
-		console.log(lastCompletedLevel);
 		if(lastCompletedLevel === null)
 			lastCompletedLevel = -1;
 
@@ -46,9 +45,6 @@ DungeonDashGame.InitializeGame = function(board_index){
 
 
 	if(DungeonDashGame.game){
-
-
-
 
 		DungeonDashGame.game.state.states[DungeonDashGame.game.state.current].loadBoard(board_index);
 		// this.game.state.start("GameState", true, false, board_index);	

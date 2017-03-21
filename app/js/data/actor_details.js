@@ -57,16 +57,36 @@ var ACTOR_TYPES = {
 		sprite_color: 0xffffff
 	},
 	"boss1": {
-		atlas: "triangle",
-		sprite_name: null,
+		atlas: "all_sprites",
+		sprite_name: "boss",
 		can_activate: true,
 		can_slide: true,
 		move_limit: 1,
-		hp: 3,
+		hp: 1,
 		damage: 1,
-		sprite_scale: -.09,
-		sprite_color: 0xc9302c,
-		eye_offset: -15
+		sprite_scale: .67,
+		sprite_color: 0xffffff,
+		eye_offset: -15,
+		onDeathCallback: function(actor, board){
+			console.log("boss dead");
+			var tl = board.GetTile(actor.current_tile.ind_y+1, actor.current_tile.ind_x-1);
+			var tr = board.GetTile(actor.current_tile.ind_y+1, actor.current_tile.ind_x+1);
+			var br = board.GetTile(actor.current_tile.ind_y-1, actor.current_tile.ind_x+1);
+			var bl = board.GetTile(actor.current_tile.ind_y-1, actor.current_tile.ind_x-1);
+
+			if(tl)
+				board.SpawnActor("1", tl);
+
+			if(tr)
+				board.SpawnActor("1", tr);
+
+			if(br)
+				board.SpawnActor("1", br);
+
+			if(bl)
+				board.SpawnActor("1", bl);
+
+		}
 
 	},
 	"rook": {
@@ -78,8 +98,8 @@ var ACTOR_TYPES = {
 		hp: 1,
 		damage: 1,
 		sprite_scale: .67,
-		eye_scale: .04,
-		eye_offset: 4,
+		eye_scale: .05,
+		eye_offset: 0,
 		sprite_color: 0xffffff
 	},
 	"box": {

@@ -39,7 +39,7 @@ var Win = {
 }
 
 var End = {
-	board_type: "dungeon",
+	board_type: "lair",
 	height: 16,
 	width: 16,
 	"dialogue": [
@@ -535,6 +535,7 @@ var princessTorture01 = {
 		"~~~~~~wwwww~"
 }
 
+//Very hard, give player breathing room before and after
 //A+
 var princessTorture02 = {
 	board_type: "dungeon",
@@ -625,6 +626,9 @@ var princeTorture00 = {
 		"wwwwwwwwwwwwww"
 }
 
+
+//give player some breathing room here
+
 //A
 var BossFight02 = {
 	board_type: "dungeon",
@@ -650,7 +654,7 @@ var BossFight02 = {
 
 //CHAPTER 3
 var Chapter3 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 16,
 	width: 16,
 	tile_data:
@@ -673,7 +677,7 @@ var Chapter3 = {
 }
 
 var JustMovers00 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 14,
 	width: 14,
 	tile_data:
@@ -693,31 +697,12 @@ var JustMovers00 = {
 		"~~~wwwwwwww~~~"
 }
 
-// var JustMovers01 = {
-// board_type: "dungeon",// 	
-// height: 14,
-// 	width: 14,
-// 	tile_data:
-// 		"~wwwwwwwwwwww~" +
-// 		"ww          ww" +
-// 		"w            w" +
-// 		"w     @      w" +
-// 		"w            w" +
-// 		"w    wwww    w" +
-// 		"www   r    www" +
-// 		"w            w" +
-// 		"w    wwww    w" +
-// 		"w            w" +
-// 		"w            w" +
-// 		"w  w  %   w  w" +
-// 		"ww          ww" +
-// 		"~wwwwwwwwwwww~"
-// }
 
 
-//possible to get stuck
+
+//possible to get stuck?
 var JustMovers01 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 15,
 	width: 15,
 	"dialogue": [
@@ -746,10 +731,9 @@ var JustMovers01 = {
 
 
 
-//C
-//maybe too hard? weird? what is the point of this level?
+//B+
 var JustMovers02 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 15,
 	width: 15,
 	tile_data:
@@ -772,11 +756,9 @@ var JustMovers02 = {
 
 
 
-//insert one where you have to 'catch' 2 movers
-
 
 var RooksAndPawns00 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 16,
 	width: 16,
 	"dialogue": [
@@ -806,7 +788,7 @@ var RooksAndPawns00 = {
 
 
 var RooksAndPawns01 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 14,
 	width: 14,
 	"dialogue": [
@@ -838,7 +820,7 @@ var RooksAndPawns01 = {
 
 
 var RooksAndPawns02 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 14,
 	width: 14,
 	"dialogue": [
@@ -873,7 +855,7 @@ var RooksAndPawns02 = {
 
 
 var RooksAndPawnsAndKeys00 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 16,
 	width: 16,
 	tile_data:
@@ -897,7 +879,7 @@ var RooksAndPawnsAndKeys00 = {
 
 //todo: use monster to pickup key and open door
 var RooksAndPawnsAndKeys01 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 16,
 	width: 16,
 	tile_data:
@@ -905,7 +887,7 @@ var RooksAndPawnsAndKeys01 = {
 		"www   wwwwk  www" +
 		"w              w" +
 		"w              w" +
-		"w     *  *     w" +
+		"w   *      *   w" +
 		"w              w" +
 		"w              w" +
 		"www%  wwwwr  www" +
@@ -920,7 +902,7 @@ var RooksAndPawnsAndKeys01 = {
 }
 //todo: use monster to pickup key and open door
 var RooksAndPawnsAndKeys02 = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 16,
 	width: 16,
 	tile_data:
@@ -945,7 +927,7 @@ var RooksAndPawnsAndKeys02 = {
 
 //todo: use monster to pickup key and open door
 var BossFight03_TINY = {
-	board_type: "dungeon",
+	board_type: "caves",
 	height: 9,
 	width: 13,
 	tile_data:
@@ -961,28 +943,123 @@ var BossFight03_TINY = {
 }
 
 
-var BossFight03 = {
-	board_type: "dungeon",
+var BossFight03_BORING = {
+	board_type: "caves",
 	height: 16,
 	width: 16,
 	tile_data:
-		"~wwwwwwwwwwwwww~" +
-		"ww   w        ww" +
-		"w p 1w         w" +
-		"w   %w    *    w" +
-		"wwwwdw      r  w" +
-		"wp   w r      kw" +
+		"wwwwwwwwwwwwwwww" +
+		"w   kw     w   w" +
+		"w    w  *  w % w" +
+		"w    w     w1  w" +
+		"w    w     wwwdw" +
+		"wp     r       w" +
 		"w              w" +
-		"w      r       w" +
 		"w              w" +
+		"w      k       w" +
 		"wdwwwwwwwwwwwwww" +
-		"w@           kww" +
+		"w@            ww" +
 		"w              w" +
 		"w              w" +
 		"w              w" +
 		"ww            ww" +
 		"~wwwwwwwwwwwwww~"
 }
+
+
+var BossFight03 = {
+	board_type: "caves",
+	height: 13,
+	width: 11,
+	tile_data:
+		"~~~~~~~~~~~" +
+		"www~~~~~www" +
+		"w*wwwwwww*w" +
+		"www@    www" +
+		"~w       w~" +
+		"ww       ww" +
+		"w  r 1 r  w" +
+		"ww       ww" +
+		"~w       w~" +
+		"www    %www" +
+		"w*wwwwwww*w" +
+		"www~~~~~www" +
+		"~~~~~~~~~~~" 
+
+}
+
+
+
+
+
+
+//CHAPTER 4
+var Chapter4 = {
+	board_type: "lair",
+	height: 16,
+	width: 16,
+	tile_data:
+		"wwwwwwwwwwwwwwww" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w ww w     w w w" +
+		"w w  w     w w w" +
+		"w w  www   www w" +
+		"w w  w w     w w" +
+		"w ww w w w   w w" +
+		"w              w" +
+		"w              w" +
+		"wwwwwwwwwwwwwwww" +
+		"w@            0w" +
+		"www          www" +
+		"w0            %w" +
+		"wwwwwwwwwwwwwwww"
+}
+
+var Teleporter00 = {
+	board_type: "lair",
+	height: 15,
+	width: 16,
+	tile_data:
+		"~wwwwwwwwwwwwww~" +
+		"ww           0ww" +
+		"w@             w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w    wwwwww    w" +
+		"ww www*ww*www ww" +
+		"w    wwwwww    w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w0   wwwwww   %w" +
+		"wwwwww~~~~wwwwww"
+}
+var Teleporter01 = {
+	board_type: "lair",
+	height: 15,
+	width: 16,
+	tile_data:
+		"~~~~~~~~~~~~~~~~" +
+		"~~~~~~~~~~~~~~~~" +
+		"wwwwwwwwww~wwwww" +
+		"w       @w~wp 0w" +
+		"w        w~w   w" +
+		"w        w~w   w" +
+		"w        w~w  kw" +
+		"w      www~wwwww" +
+		"wdwwwwww*w~~~~~~" +
+		"w      www~~~~~~" +
+		"w        w~~~~~~" +
+		"w        w~~~~~~" +
+		"w        w~~~~~~" +
+		"w0      %w~~~~~~" +
+		"wwwwwwwwww~~~~~~"
+}
+
 //start of act 1
 //hero and princess on the lamb, caught
 DungeonDashLevels.push(Chapter1);
@@ -1044,6 +1121,14 @@ DungeonDashLevels.push(RooksAndPawnsAndKeys02); //use monster to pickup key, ope
 DungeonDashLevels.push(BossFight03);
 
 //end of act 3
+
+
+//start of act 4
+DungeonDashLevels.push(Chapter4);
+DungeonDashLevels.push(Teleporter00);
+DungeonDashLevels.push(Teleporter01);
+
+//end of act 4
 
 
 
