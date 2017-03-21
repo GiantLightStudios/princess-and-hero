@@ -8,7 +8,7 @@ Board = function(game, x, y, tile_scale, level_data_index){
 	this.level_data_index = level_data_index;
 
 	this.tile_scale = tile_scale;
-	this.scale_down = .97;
+	this.scale_down = .93;
 	this.board_width = null;
 	this.board_height = null;
 
@@ -100,7 +100,7 @@ Board.prototype.create = function() {
 
 			var x_pos = ((x_loc)*this.tile_sprite_size*this.tile_scale);// + (x*this.tile_padding);
 			var y_pos = ((y_loc)*this.tile_sprite_size*this.tile_scale);// + (y*this.tile_padding);
-			var new_tile = new Tile(this.game, x_pos,y_pos, this.tile_scale*this.scale_down, 0, tile_color);
+			var new_tile = new Tile(this.game, x_pos, y_pos, this.tile_scale*this.scale_down, 0, tile_color);
 			this.add(new_tile);
 			new_tile.x = x_pos;
 			new_tile.y = y_pos;
@@ -120,58 +120,12 @@ Board.prototype.create = function() {
 				case " ":
 					break;
 				case "@":
-					this.player = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
-					this.player.board = this;
-					this.add(this.player);
-					this.player.current_tile = this.GetTile(y,x);
-					this.player.current_tile.current_actor = this.player;
-					this.player.warpToCurrentTile();
-					break;
 				case "%":
-					this.princess = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
-					this.princess.board = this;
-					this.add(this.princess);
-					this.princess.current_tile = this.GetTile(y,x);
-					this.princess.current_tile.current_actor = this.princess;
-					this.princess.warpToCurrentTile();
-					this.goal = this.princess;
-					break;
 				case "1":
-					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
-					npc.board = this;
-					this.add(npc);
-					npc.current_tile = this.GetTile(y,x);
-					npc.current_tile.current_actor = npc;
-					npc.warpToCurrentTile();
-					this.boss = npc;
-					this.npcs.push(npc);
-					break;
 				case "#":
-					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
-					npc.board = this;
-					this.add(npc);
-					npc.current_tile = this.GetTile(y,x);
-					npc.current_tile.current_actor = npc;
-					npc.warpToCurrentTile();
-					this.npcs.push(npc);
-					break;
 				case "p":
-					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
-					npc.board = this;
-					this.add(npc);
-					npc.current_tile = this.GetTile(y,x);
-					npc.current_tile.current_actor = npc;
-					npc.warpToCurrentTile();
-					this.npcs.push(npc);
-					break;
 				case "r":
-					var npc = new Actor(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
-					npc.board = this;
-					this.add(npc);
-					npc.current_tile = this.GetTile(y,x);
-					npc.current_tile.current_actor = npc;
-					npc.warpToCurrentTile();
-					this.npcs.push(npc);
+					this.SpawnActor(t_data, new_tile);
 					break;
 				
 				//portal
@@ -223,6 +177,13 @@ Board.prototype.create = function() {
 
 				//pickups
 				case "h":
+					var pickup = new Pickup(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
+					pickup.board = this;
+					this.add(pickup);
+					pickup.current_tile = this.GetTile(y,x);
+					pickup.current_tile.current_pickup = pickup;
+					this.pickups.push(pickup);
+					break;
 				case "k":
 					var pickup = new Pickup(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
 					pickup.board = this;
@@ -250,7 +211,7 @@ Board.prototype.create = function() {
 
 	for(var i = 0;i<this.npcs.length;i++){
 		this.bringToTop(this.npcs[i]);
-		this.npcs[i].eye.target = this.princess;
+		this.npcs[i].eye.target = this.player;
 	}
 
 
@@ -277,6 +238,75 @@ Board.prototype.create = function() {
 
 
 }
+
+Board.prototype.SpawnActor = function(actor_type_code, tile){
+	if(tile){
+		if(tile.current_actor || (tile.current_prop && tile.current_prop.prop_type.blocks)){
+			return;
+		}
+		switch(actor_type_code){
+			case "@":
+				this.player = new Actor(this.game, tile.x, tile.y, this.tile_scale*this.scale_down, actor_type_code);
+				this.player.board = this;
+				this.add(this.player);
+				this.player.current_tile = tile;
+				this.player.current_tile.current_actor = this.player;
+				this.player.warpToCurrentTile();
+				break;
+			case "%":
+				this.princess = new Actor(this.game, tile.x, tile.y, this.tile_scale*this.scale_down, actor_type_code);
+				this.princess.board = this;
+				this.add(this.princess);
+				this.princess.current_tile = tile;
+				this.princess.current_tile.current_actor = this.princess;
+				this.princess.warpToCurrentTile();
+				// this.goal = this.princess;
+				break;
+			case "1":
+				var npc = new Actor(this.game, tile.x, tile.y, this.tile_scale*this.scale_down, actor_type_code);
+				npc.board = this;
+				this.add(npc);
+				npc.current_tile = tile;
+				npc.current_tile.current_actor = npc;
+				npc.warpToCurrentTile();
+				if(this.player)
+					npc.eye.target = this.player;
+				this.npcs.push(npc);
+				break;
+			case "#":
+				var npc = new Actor(this.game, tile.x, tile.y, this.tile_scale*this.scale_down, actor_type_code);
+				npc.board = this;
+				this.add(npc);
+				npc.current_tile = tile;
+				npc.current_tile.current_actor = npc;
+				npc.warpToCurrentTile();
+				this.npcs.push(npc);
+				break;
+			case "p":
+				var npc = new Actor(this.game, tile.x, tile.y, this.tile_scale*this.scale_down, actor_type_code);
+				npc.board = this;
+				this.add(npc);
+				npc.current_tile = tile;
+				npc.current_tile.current_actor = npc;
+				npc.warpToCurrentTile();
+				this.npcs.push(npc);
+				break;
+			case "r":
+				var npc = new Actor(this.game, tile.x, tile.y, this.tile_scale*this.scale_down, actor_type_code);
+				npc.board = this;
+				this.add(npc);
+				npc.current_tile = tile;
+				npc.current_tile.current_actor = npc;
+				npc.warpToCurrentTile();
+				this.npcs.push(npc);
+				break;
+					
+		}
+	}
+
+
+}
+
 Board.prototype.GetRandomEmptyTile = function(num_attempts){
 	if(num_attempts==null){
 		num_attempts = 0;
@@ -317,7 +347,7 @@ Board.prototype.slide = function(x_dir, y_dir){
 	var sortedActors = [];
 	if(x_dir<0){
 		sortedActors = allActors.sort(function(a, b){
-			return a.x-b.x;
+			return a.x - b.x;
 		});
 	}
 	if(x_dir>0){
@@ -359,7 +389,8 @@ Board.prototype.slide = function(x_dir, y_dir){
 	for(var i = 0;i<sortedActors.length;i++){
 		// sortedActors[i].slide(x_dir, y_dir);
 
-		var delay = 40*i;
+		var delay = 10*i;//Math.max(20*i, 100);
+
 		var a = sortedActors[i];
 		(function(actor){
 			if(!actor.isDead){
@@ -393,7 +424,9 @@ Board.prototype.GetTile = function(row, col){
 
 Board.prototype.CheckWin = function(){
 	var that = this;
-	if(this.has_won == true && that.player.isDead == false && that.princess.isDead == false){
+
+	if(this.has_won == true && this.isWinning!==true && that.player.isDead == false && that.princess.isDead == false){
+		this.isWinning = true;
 		if(this.player.y>this.princess.y){
 			this.bringToTop(this.player);
 		}else{
@@ -413,6 +446,7 @@ Board.prototype.Win = function(){
 	that.player.canControl = false;
 	that.princess.canControl = false;
 	this.has_won = true;
+
 
 
 

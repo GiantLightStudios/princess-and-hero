@@ -87,7 +87,8 @@ DungeonDashGame.GameState.prototype  = {
 		// this.vignette.anchor.set(.5);
 		// this.world.add(this.vignette);
 
-		this.loadBoard(this.current_board_index);
+
+
 
 
 
@@ -100,12 +101,17 @@ DungeonDashGame.GameState.prototype  = {
 		this.bg_music = this.game.add.audio("bg-music");
 		this.bg_music.volume = .25;
 		this.bg_music.loop = true;
-		this.bg_music.play();
 
 		this.lose_sfx = this.game.add.audio("uh-oh");
 		this.lose_sfx.volume = .25;
 		this.timer = this.game.time.create(false);
 		this.timer.start();
+
+
+
+
+		this.transitionToLevel(this.current_board_index);
+		// this.loadBoard(this.current_board_index);
 	},
 
 	update: function(){
@@ -128,7 +134,7 @@ DungeonDashGame.GameState.prototype  = {
 
 
 
-		if(that.current_board.player.hp<=0 && !that.has_lost){
+		if(that.current_board && that.current_board.player.hp<=0 && !that.has_lost){
 			that.lose();
 		}
 
@@ -174,6 +180,7 @@ DungeonDashGame.GameState.prototype  = {
 		this.loadBoard(this.current_board_index);
 	},
 	nextLevel: function(){
+		console.log(this.current_board_index);
 		this.current_board_index++;
 		if(this.current_board_index>=DungeonDashLevels.length){
 			this.current_board_index = 0;
@@ -201,6 +208,34 @@ DungeonDashGame.GameState.prototype  = {
 
 		if(delay == null)
 			delay = 10;
+
+
+
+		var new_dungeon_data = DungeonDashLevels[index];
+		var new_dungeon_type = BOARD_TYPES[new_dungeon_data.board_type];
+
+		if(this.current_board){
+
+			if(this.current_board.board_type.music!=new_dungeon_type.music){
+				this.bg_music.fadeOut(1000);
+				this.game.time.events.add(2500, function(){
+					that.bg_music = that.game.add.audio(new_dungeon_type.music);
+					that.bg_music.volume = .25;
+					that.bg_music.loop = true;
+					that.bg_music.play();
+				});
+
+			}
+
+		}else{
+			this.bg_music = this.game.add.audio(new_dungeon_type.music);
+			this.bg_music.volume = .25;
+			this.bg_music.loop = true;
+			this.bg_music.play();
+		}
+
+
+
 
 		that.timer.add(delay, function(){
 			that.outTween = that.game.add.tween(that.transitionCoverOut);
@@ -231,7 +266,7 @@ DungeonDashGame.GameState.prototype  = {
 		this.game.world.bringToTop(this.aboveAll);
 		if(this.transitionCoverIn){
 			this.transitionCoverIn.alpha = 100;
-			this.aboveAll.bringToTop(this.transitionCoverIn);			
+			this.aboveAll.bringToTop(this.transitionCoverIn);
 		}
 		if(that.inTween){
 			that.game.tweens.remove(that.inTween);
@@ -243,6 +278,7 @@ DungeonDashGame.GameState.prototype  = {
 		}
 		var board_tile_scale=.09375;
 
+		this.current_board_index = index;
 		this.current_board = new Board(this.game, SAFE_ZONE_WIDTH/2, SAFE_ZONE_HEIGHT/2, board_tile_scale, index);
 		this.game_model.set("current_board_index", index);
 		this.world.add(this.current_board);

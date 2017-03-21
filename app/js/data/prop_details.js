@@ -56,14 +56,18 @@ var PROP_TYPES = {
 
 		}
 	},
+
 	"damage": {
 
 	},
 	"portal": {
 		sprite_color: 0x5cb85c,
+		alpha: .8,
+		blocks: false,
 		atlas: "square",
 		sprite_name: null,
 		sticky: true,
+		scale: .08,
 		onCollide: function(actor, prop, board){
 
 		},
@@ -71,7 +75,7 @@ var PROP_TYPES = {
 			// actor.current_tile.current_actor = null;
 			// actor.current_tile = prop.other_portal.current_tile;
 			// actor.current_tile.current_actor = actor;
-			return prop.other_portal.current_tile;
+			// return prop.other_portal.current_tile;
 			// board.bringToTop(prop);
 			// prop.scaleUpTween.start();
 			// tile.scaleUpTween.start();

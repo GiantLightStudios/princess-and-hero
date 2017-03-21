@@ -179,7 +179,7 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 					block_found = true;
 				}
 				else{
-				 	if(neighbor.current_prop.prop_type.onEnter){
+				 	if(neighbor.current_prop.prop_type == PROP_TYPES.portal){
 						var resulting_tile = neighbor.current_prop.prop_type.onEnter(this, neighbor.current_prop, this.board);
 						if(resulting_tile){
 							warp_list.push({"origin": neighbor, "destination": resulting_tile});
@@ -210,7 +210,6 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 
 
 
-		var move_tween = null;
 
 
 		if(!this.game)
@@ -219,55 +218,109 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 
 		//if we have found our target block, move there
 		if(target_block!=null){
+			var move_tween = null;
 
 			// this.UpdateDashLine(this.current_tile, target_block);
 			if(target_block!=this.current_tile){
 				this.move_sfx.play();
 				var pitch = .95 + (this.game.rnd.frac()*.1);
 				this.move_sfx._sound.playbackRate.value = pitch;
-			}
 
-
-			move_tween = this.game.add.tween(this);
-			move_tween.to({x: target_block.x, y: target_block.y}, 100);
-
-			if(that.current_tile.current_actor == that){
-				that.current_tile.current_actor = null;
-			}
-			that.current_tile = target_block;
-			that.current_tile.current_actor = that;
-			if(attack_target && !attack_target.isDead){
-				if(attack_target.actor_type.onCollide){
-					attack_target.actor_type.onCollide(attack_target, that, that.board);
-				}else{
-					var didKill = that.attack(attack_target);
+				if(that.current_tile.current_actor == that){
+					that.current_tile.current_actor = null;
 				}
-
-			}
-
-
-			if(resolved_callback!=null){
-				resolved_callback.call();
-			}
+				that.current_tile = target_block;
+				that.current_tile.current_actor = that;
 
 
-			move_tween.onComplete.add(function(){
+				move_tween = this.game.add.tween(this);
+				move_tween.to({x: target_block.x, y: target_block.y}, 100);
 
-				if(that.isDead){
-					that.HandleDeathLater();
-				}
-				if(attack_target && attack_target.isDead){
-					attack_target.HandleDeathLater();
-				}
 
-				if(!that.isDead && target_block!=starting_tile){
-					if(target_block.current_prop && target_block.current_prop.prop_type.onLand){
-						target_block.current_prop.prop_type.onLand(that, target_block.current_prop, that.board);
+				if(attack_target && !attack_target.isDead){
+					if(attack_target.actor_type.onCollide){
+						attack_target.actor_type.onCollide(attack_target, that, that.board);
+					}else{
+						var didKill = that.attack(attack_target);
 					}
+
 				}
 
-			});
-			move_tween.start();
+
+				if(resolved_callback!=null){
+					resolved_callback.call();
+				}
+
+
+				move_tween.onComplete.add(function(){
+
+					if(that.isDead){
+						that.HandleDeathLater();
+					}
+					if(attack_target && attack_target.isDead){
+						attack_target.HandleDeathLater();
+					}
+
+					if(!that.isDead && target_block!=starting_tile){
+						if(target_block.current_prop && target_block.current_prop.prop_type.onLand){
+							target_block.current_prop.prop_type.onLand(that, target_block.current_prop, that.board);
+						}
+					}
+					that.board.CheckWin();
+
+				});
+				move_tween.start();
+			}
+			//if target block and current block are the same, nudge
+			else{
+
+
+				move_tween = this.game.add.tween(this);
+				move_tween.to({x: target_block.x + (this.current_direction.x * 10), y: target_block.y - (this.current_direction.y * 10)}, 60);
+				
+				if(attack_target && !attack_target.isDead){
+					if(attack_target.actor_type.onCollide){
+						attack_target.actor_type.onCollide(attack_target, that, that.board);
+					}else{
+						var didKill = that.attack(attack_target);
+					}
+
+				}
+
+
+				move_tween.onComplete.add(function(){
+					var move_back_tween = that.game.add.tween(that);
+					move_back_tween.to({x: target_block.x, y: target_block.y}, 60);
+					move_back_tween.start();
+
+
+					move_back_tween.onComplete.add(function(){
+
+
+						if(that.isDead){
+							that.HandleDeathLater();
+						}
+						if(attack_target && attack_target.isDead){
+							attack_target.HandleDeathLater();
+						}
+
+						if(!that.isDead && target_block!=starting_tile){
+							if(target_block.current_prop && target_block.current_prop.prop_type.onLand){
+								target_block.current_prop.prop_type.onLand(that, target_block.current_prop, that.board);
+							}
+						}
+						that.board.CheckWin();
+					});
+
+				});
+
+				move_tween.start();
+				if(resolved_callback!=null){
+					resolved_callback.call();
+				}
+
+
+			}
 
 
 		}
@@ -323,14 +376,14 @@ Actor.prototype.Blink = function(color){
 		this.timer.remove(this.blink_timer);
 
 	var base_color = this.square.tint;
-	this.square.tint = color;
+	this.alpha = .5;
 	this.blink_timer = this.timer.add(50, function(){
-		this.square.tint = base_color;
+		this.alpha = 1;
 	}, this);
 }
 
 Actor.prototype.die = function(){
-
+	this.Blink();
 	for(var i = 0;i<this.held_items.length;i++){
 		var item = this.held_items[i];
 		this.board.addChild(item);
@@ -346,12 +399,21 @@ Actor.prototype.die = function(){
 			this.board.npcs.splice(ind, 1);
 		}
 	}
+
+
 	if(this.current_tile.current_actor == this)
 		this.current_tile.current_actor = null;
+
+
 
 	this.eye.small_circle.visible = false;
 	this.eye.ex.visible = true;
 	// this.eye.target = null;
+
+	if(this.actor_type.onDeathCallback){
+		this.actor_type.onDeathCallback(this, this.board);
+	}
+
 }
 
 Actor.prototype.TakeDamage = function(amount){
@@ -384,4 +446,5 @@ Actor.prototype.HandleDeathLater = function(amount){
 	// this.eye.destroy();
 	// this.destroy();
 }
+
 

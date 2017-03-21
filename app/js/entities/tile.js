@@ -40,7 +40,7 @@ Tile.prototype = Object.create(Phaser.Sprite.prototype);
 Tile.prototype.constructor = Tile;
 
 Tile.prototype.create = function() { 
-	this.square = this.game.add.sprite(0,0, "square");
+	this.square = this.game.add.sprite(0,0, "square", null);
 	this.square.tint = this.color;
 	this.square.anchor.set(.5);
 	this.addChild(this.square);
