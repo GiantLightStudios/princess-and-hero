@@ -179,15 +179,19 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 					block_found = true;
 				}
 				else{
+					//portals are special
 				 	if(neighbor.current_prop.prop_type == PROP_TYPES.portal){
 						var resulting_tile = neighbor.current_prop.prop_type.onEnter(this, neighbor.current_prop, this.board);
 						if(resulting_tile){
 							warp_list.push({"origin": neighbor, "destination": resulting_tile});
 						}
 					}
-					if(neighbor.current_prop.prop_type.sticky){
-						target_block = neighbor;
-						block_found = true;
+
+					if(neighbor.current_prop.prop_type.onEnter){
+						neighbor.current_prop.prop_type.onEnter(this, neighbor.current_prop, this.board);
+						if(this.isDead){
+							// block_found = true;
+						}
 					}
 				}
 
@@ -255,6 +259,7 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 				move_tween.onComplete.add(function(){
 
 					if(that.isDead){
+						console.log('was dead, handling death later?')
 						that.HandleDeathLater();
 					}
 					if(attack_target && attack_target.isDead){
@@ -307,8 +312,15 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 						if(!that.isDead && target_block!=starting_tile){
 							if(target_block.current_prop && target_block.current_prop.prop_type.onLand){
 								target_block.current_prop.prop_type.onLand(that, target_block.current_prop, that.board);
+								if(that.isDead){
+									that.HandleDeathLater();
+								}
 							}
+	
 						}
+
+
+
 						that.board.CheckWin();
 					});
 
@@ -410,9 +422,9 @@ Actor.prototype.die = function(){
 	this.eye.ex.visible = true;
 	// this.eye.target = null;
 
-	if(this.actor_type.onDeathCallback){
-		this.actor_type.onDeathCallback(this, this.board);
-	}
+	// if(this.actor_type.onDeathCallback){
+	// 	this.actor_type.onDeathCallback(this, this.board);
+	// }
 
 }
 
@@ -443,6 +455,11 @@ Actor.prototype.HandleDeathLater = function(amount){
 	this.body.velocity.y = -300;
 	this.body.angularVelocity = this.body.velocity.x;
 	this.body.angularDrag = 200;
+
+
+	if(this.actor_type.onDeathCallback){
+		this.actor_type.onDeathCallback(this, this.board);
+	}
 	// this.eye.destroy();
 	// this.destroy();
 }

@@ -42,7 +42,8 @@ var PROP_TYPES = {
 	"flame": {
 		sprite_color: 0xFFFFFF,
 		alpha: .8,
-		blocks: true,
+		blocks: false,
+		sticky: true,
 		atlas: "flame",
 		sprite_name: null,
 		scale: .75,
@@ -50,9 +51,14 @@ var PROP_TYPES = {
 		blendMode: 1,
 		onCollide: function(actor, prop, board){
 			// console.log("collide w/ door", actor, prop);
-			actor.TakeDamage(1);
+			// actor.TakeDamage(1);
 		},
 		onEnter: function(actor){
+			console.log(actor, "enter");
+			actor.TakeDamage(1);
+		},
+		onLand: function(actor, prop, board){
+
 
 		}
 	},

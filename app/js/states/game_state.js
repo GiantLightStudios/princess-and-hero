@@ -176,11 +176,9 @@ DungeonDashGame.GameState.prototype  = {
 		
 	},
 	resetCurrentBoard: function(){
-		console.log("resetting a board");
 		this.loadBoard(this.current_board_index);
 	},
 	nextLevel: function(){
-		console.log(this.current_board_index);
 		this.current_board_index++;
 		if(this.current_board_index>=DungeonDashLevels.length){
 			this.current_board_index = 0;
@@ -254,7 +252,6 @@ DungeonDashGame.GameState.prototype  = {
 
 	},
 	up: function(){
-		console.log("UP");
 	},
 	loadBoard: function(index){
 
@@ -337,8 +334,6 @@ DungeonDashGame.GameState.prototype  = {
 	},
 
 	resize: function(){
-
-		console.log("game_state.resize");
 
 		// var lGameScale=Math.round(10000 * Math.min(this.game.width/SAFE_ZONE_WIDTH,this.game.height / SAFE_ZONE_HEIGHT)) / 10000;
 		// this.world.scale.setTo (lGameScale,lGameScale);

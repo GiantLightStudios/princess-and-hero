@@ -55,15 +55,15 @@ DungeonDashGame.InitializeGame = function(board_index){
 
 			init: function(){
 
-				console.log("game.init");
+				// console.log("game.init");
 			},
 
 			//global preload
 			preload: function(){
-				console.log("game.preload");
+				// console.log("game.preload");
 			},
 			create: function(){ 
-				console.log("game.create");
+				// console.log("game.create");
 
 
 
@@ -79,15 +79,15 @@ DungeonDashGame.InitializeGame = function(board_index){
 			},
 			resize: function(){
 				//not called
-				console.log("game.resize");		
+				// console.log("game.resize");		
 
 
 			},
 			updateHUD: function(){
-				console.log("game.updateHUD()");
+				// console.log("game.updateHUD()");
 			},
 			up: function(){
-				console.log("UP");
+				// console.log("UP");
 			},
 
 			//NOTE: built in update won't run, overwritten by the current state update function

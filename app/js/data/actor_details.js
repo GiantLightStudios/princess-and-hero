@@ -68,7 +68,6 @@ var ACTOR_TYPES = {
 		sprite_color: 0xffffff,
 		eye_offset: -15,
 		onDeathCallback: function(actor, board){
-			console.log("boss dead");
 			var tl = board.GetTile(actor.current_tile.ind_y+1, actor.current_tile.ind_x-1);
 			var tr = board.GetTile(actor.current_tile.ind_y+1, actor.current_tile.ind_x+1);
 			var br = board.GetTile(actor.current_tile.ind_y-1, actor.current_tile.ind_x+1);
