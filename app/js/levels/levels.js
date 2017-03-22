@@ -72,7 +72,7 @@ var End = {
 		"wwwwwwwwwwwwwwww"
 }
 var ToBeContinued = {
-	board_type: "dungeon",
+	board_type: "lair",
 	height: 16,
 	width: 16,
 	"dialogue": [
@@ -87,7 +87,7 @@ var ToBeContinued = {
 
 	],
 	"tile_data": 		
-		"wwwwwwwwwwwwwwww" +
+		"~wwwwwwwwwwwwww~" +
 		"ww            ww" +
 		"w              w" +
 		"w              w" +
@@ -100,9 +100,9 @@ var ToBeContinued = {
 		"w              w" +
 		"w   w  w  w    w" +
 		"w              w" +
-		"w@             w" +
-		"ww           %ww" +
-		"wwwwwwwwwwwwwwww"
+		"w@            %w" +
+		"ww            ww" +
+		"~wwwwwwwwwwwwww~"
 }
 
 
@@ -374,7 +374,7 @@ var CombatStart4 = {
 var BossFight01 = {
 	board_type: "forest",
 	height: 10,
-	width: 10,
+	width: 15,
 	"dialogue": [
 		{
 			"speaker": "princess",
@@ -386,16 +386,16 @@ var BossFight01 = {
 		}
 	],
 	tile_data:
-		"~~~~~~~~~~" +
-		"~~~~~~~~~~" +
-		"wwwwwwwwww" +
-		"w        w" +
-		"w @  1 % w" +
-		"w        w" +
-		"wwwwwwwwww" +
-		"~~~~~~~~~~" +
-		"~~~~~~~~~~" +
-		"~~~~~~~~~~" 
+		"~~~~~~~~~~~~~~~" +
+		"~~~~~~~~~~~~~~~" +
+		"www~~~~~~~~~www" +
+		"w*wwwwwwwwwww*w" +
+		"www         www" +
+		"~w  @  1  %  w~" +
+		"www         www" +
+		"w*wwwwwwwwwww*w" +
+		"www~~~~~~~~~www" +
+		"~~~~~~~~~~~~~~~" 
 }
 
 
@@ -1059,7 +1059,27 @@ var Teleporter01 = {
 		"w0      %w~~~~~~" +
 		"wwwwwwwwww~~~~~~"
 }
-
+var BossKill = {
+	board_type: "lair",
+	height: 15,
+	width: 16,
+	tile_data:
+		"~wwwwwwwwwwwwww~" +
+		"ww           0ww" +
+		"w@             w" +
+		"w      *1*     w" +
+		"w       *      w" +
+		"w      * *     w" +
+		"w    wwwwww    w" +
+		"ww www*ww*www ww" +
+		"w    wwwwww    w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w              w" +
+		"w0   wwwwww   %w" +
+		"wwwwww~~~~wwwwww"
+}
 //start of act 1
 //hero and princess on the lamb, caught
 DungeonDashLevels.push(Chapter1);
@@ -1127,6 +1147,7 @@ DungeonDashLevels.push(BossFight03);
 DungeonDashLevels.push(Chapter4);
 DungeonDashLevels.push(Teleporter00);
 DungeonDashLevels.push(Teleporter01);
+// DungeonDashLevels.push(BossKill);
 
 //end of act 4
 
@@ -1134,8 +1155,8 @@ DungeonDashLevels.push(Teleporter01);
 
 
 // DungeonDashLevels.push(Win);
-DungeonDashLevels.push(End);
-// DungeonDashLevels.push(ToBeContinued);
+// DungeonDashLevels.push(End);
+DungeonDashLevels.push(ToBeContinued);
 // DungeonDashLevels.push(KitchenSink);
 
 

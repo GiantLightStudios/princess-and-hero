@@ -28,7 +28,6 @@ Board = function(game, x, y, tile_scale, level_data_index){
 
 	this.board_type = BOARD_TYPES[this.board_data.board_type];
 
-	console.log(this.board_type);
 	this.timer = this.game.time.create(false);
 
 	this.game.add.existing(this);
@@ -112,7 +111,6 @@ Board.prototype.create = function() {
 
 
 
-			// console.log(this.board_data.tile_data);
 			// this.board_data.tile_data[this.board_width * y + x] = tile;
 
 
@@ -453,7 +451,6 @@ Board.prototype.Win = function(){
 }
 
 Board.prototype.resize = function(){
-	console.log("board.resize()");
 	this.grunge.width = (this.game.width/this.parent.scale.x);
 	this.grunge.height = (this.game.height/this.parent.scale.y);
 }
