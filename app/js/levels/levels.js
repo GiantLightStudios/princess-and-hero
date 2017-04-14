@@ -1017,6 +1017,29 @@ var Chapter4 = {
 		"wwwwwwwwwwwwwwww"
 }
 
+
+
+var TeleporterSymmetricalSwap = {
+	board_type: "lair",
+	height: 14,
+	width: 15,
+	tile_data:
+		"~~~~~~~~~~~~~~~" +
+		"~wwwwwwwwwwwww~" +
+		"ww           ww" +
+		"w             w" +
+		"w             w" +
+		"ww@    0     ww" +
+		"~wwwwwwwwwwwww~" +
+		"~~~~~~w*w~~~~~~" +
+		"~wwwwwwwwwwwww~" +
+		"ww%    0     ww" +
+		"w             w" +
+		"w             w" +
+		"ww           ww" +
+		"~wwwwwwwwwwwww~" 
+}
+
 var Teleporter00 = {
 	board_type: "lair",
 	height: 15,
@@ -1038,27 +1061,337 @@ var Teleporter00 = {
 		"w0   wwwwww   %w" +
 		"wwwwww~~~~wwwwww"
 }
+
+
+
+
 var Teleporter01 = {
 	board_type: "lair",
 	height: 15,
-	width: 16,
+	width: 15,
 	tile_data:
-		"~~~~~~~~~~~~~~~~" +
-		"~~~~~~~~~~~~~~~~" +
-		"wwwwwwwwww~wwwww" +
-		"w       @w~wp 0w" +
-		"w        w~w   w" +
-		"w        w~w   w" +
-		"w        w~w  kw" +
-		"w      www~wwwww" +
-		"wdwwwwww*w~~~~~~" +
-		"w      www~~~~~~" +
-		"w        w~~~~~~" +
-		"w        w~~~~~~" +
-		"w        w~~~~~~" +
-		"w0      %w~~~~~~" +
-		"wwwwwwwwww~~~~~~"
+		"~~~~~~~~~~~~~~~" +
+		"wwwwwwwwwwwwwww" +
+		"w0           pw" +
+		"w             w" +
+		"w             w" +
+		"ww  ww   ww  ww" +
+		"wwwww* @ *wwwww" +
+		"w   ww   ww   w" +
+		"w      0      w" +
+		"ww  w     w  ww" +
+		"~wwwwp % pwwww~" +
+		"~~~~wwwwwww~~~~" +
+		"~~~~~~~~~~~~~~~" +
+		"~~~~~~~~~~~~~~~" +
+		"~~~~~~~~~~~~~~~" 
 }
+
+
+
+var Teleporter04 = {
+	board_type: "lair",
+	height: 14,
+	width: 15,
+	tile_data:
+		"~~~~~~~~~~~~~~~" +
+		" wwwwwwwwwwwww~" +
+		"ww        w  ww" +
+		"w         ww  w" +
+		"w             w" +
+		"ww@    0     ww" +
+		"~wwwwwwwwwwwww~" +
+		"~~~~~~w*w~~~~~~" +
+		"~wwwwwwwwwwwww~" +
+		"w %    0      w" +
+		"w             w" +
+		"w  ww         w" +
+		"w   w         w" +
+		"~wwwwwwwwwwwww~" 
+
+}
+
+
+var TeleporterEasyMobAndKey = {
+	board_type: "lair",
+	height: 14,
+	width: 15,
+	tile_data:
+		"~~~~~~~~~~~~~~~" +
+		"wwwwwwwww~wwwww" +
+		"w   @   w~wp 0w" +
+		"w       w~w   w" +
+		"w       w~w   w" +
+		"w       w~w   w" +
+		"w  www  w~ww kw" +
+		"wdww*wwww~~wwww" +
+		"w  www  w~~~~~~" +
+		"w       w~~~~~~" +
+		"w       w~~~~~~" +
+		"w       w~~~~~~" +
+		"w0  %   w~~~~~~" +
+		"wwwwwwwww~~~~~~"
+}
+var TeleporterEasyMobAndKey02 = {
+	board_type: "lair",
+	height: 14,
+	width: 15,
+	tile_data:
+		"~~~~~~~~~~~~~~~" +
+		"~~~~wwwwwwwwwww" +
+		"~~~~w         w" +
+		"~~~~w www www w" +
+		"~~~~w w~w w*w w" +
+		"wwwww w~w www w" +
+		"w   w w~w    kw" +
+		"w     w~www   w" +
+		"w   www~~~w w w" +
+		"wwwdw~~~~~w   w" +
+		"w  0w~~~~~w* *w" +
+		"w   w~~~~~w   w" +
+		"w@*%w~~~~~w 0 w" +
+		"wwwww~~~~~wwwww"
+}
+
+
+var TeleporterMobAndKey03 = {
+	board_type: "lair",
+	height: 15,
+	width: 15,
+	tile_data:
+		"wwwwwwww~wwwwww" +
+		"w      w~w*%@*w" +
+		"w      w~w    w" +
+		"w      w~w 0  w" +
+		"w      w~wwwwww" +
+		"w      w~~~~~~~" +
+		"wwdwww wwwww~~~" +
+		"~w        kw~~~" +
+		"~w   w w   w~~~" +
+		"~w  ww ww  w~~~" +
+		"~w  w 0 w  w~~~" +
+		"~w  ww ww  w~~~" +
+		"~w   w w   w~~~" +
+		"~w         w~~~" +
+		"~wwwwwwwwwww~~~"
+}
+
+
+
+var TeleporterMovers01 = {
+	board_type: "lair",
+	height: 14,
+	width: 15,
+	tile_data:
+		"~~~~~~~~~~~~~~~" +
+		"wwwwwwwww~wwwww" +
+		"w   @   w~wr 0w" +
+		"w       w~w   w" +
+		"w       w~w   w" +
+		"w       w~w   w" +
+		"w  www  w~ww  w" +
+		"wpww1wwww~~wwww" +
+		"w  www  w~~~~~~" +
+		"w       w~~~~~~" +
+		"w       w~~~~~~" +
+		"w       w~~~~~~" +
+		"w0  %   w~~~~~~" +
+		"wwwwwwwww~~~~~~"
+}
+
+var TeleporterMovers02 = {
+	board_type: "lair",
+	height: 15,
+	width: 15,
+	tile_data:
+		"wwwwwwww~wwwwww" +
+		"wr     w~wp%@pw" +
+		"w      w~w    w" +
+		"w      w~w 0  w" +
+		"w      w~wwwwww" +
+		"w      w~~~~~~~" +
+		"wwpwww wwwww~~~" +
+		"~w         w~~~" +
+		"~w   w w   w~~~" +
+		"~w  ww ww  w~~~" +
+		"~w  w 0rw  w~~~" +
+		"~w  ww ww  w~~~" +
+		"~w   w w   w~~~" +
+		"~wr        w~~~" +
+		"~wwwwwwwwwww~~~"
+}
+
+
+
+
+
+
+var TeleporterMoversKeys00 = {
+	board_type: "lair",
+	height: 13,
+	width: 14,
+	tile_data:
+		"~~~~~~~~~~~~~~" +
+		"wwwww~wwwwwwww" +
+		"wr@%w~wk     w" +
+		"w   w~w      w" +
+		"w 0 w~w      w" +
+		"wwwww~w      w" +
+		"~~~~~~wp 0   w" +
+		"wwwwwwwww wwdw" +
+		"w            w" +
+		"w  *         w" +
+		"w            w" +
+		"wwwwwwwwwwwwww"
+}
+
+var TeleporterMoversKeys01 = {
+	board_type: "lair",
+	height: 15,
+	width: 15,
+	tile_data:
+		"wwwwwwwwwwwwwww" +
+		"w  *  @k%  *  w" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"wwwwwwwwwwwwwww"
+}
+
+
+var TeleporterInfiniteGag = {
+	board_type: "lair",
+	height: 14,
+	width: 15,
+	tile_data:
+		"~~~~~~~~~~~~~~~" +
+		" wwwwwwwwwwwww~" +
+		"ww     0     ww" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"ww    @      ww" +
+		"~wwwwww%wwwwww~" +
+		"ww           ww" +
+		"w             w" +
+		"w             w" +
+		"w             w" +
+		"ww     0     ww" +
+		"~wwwwwwwwwwwww~" 
+}
+
+
+
+
+
+// var BossFight04_00 = {
+// 	board_type: "lair",
+// 	height: 15,
+// 	width: 15,
+// 	tile_data:
+// 		"wwwwwwwwwwwwwww" +
+// 		"w             w" +
+// 		"w             w" +
+// 		"w             w" +
+// 		"w             w" +
+// 		"w        *    w" +
+// 		"w             w" +
+// 		"w  @0    %01  w" +
+// 		"w             w" +
+// 		"w        *    w" +
+// 		"w             w" +
+// 		"w             w" +
+// 		"w             w" +
+// 		"w             w" +
+// 		"wwwwwwwwwwwwwww"
+// }
+
+// var BossFight04_02 = {
+// 	board_type: "lair",
+// 	height: 15,
+// 	width: 15,
+// 	tile_data:
+// 		"wwwwwwwwwwwwwww" +
+// 		"w@1w         kw" +
+// 		"w 0w          w" +
+// 		"wwww          w" +
+// 		"w             w" +
+// 		"w  w www *    w" +
+// 		"w  w          w" +
+// 		"w  w  %       w" +
+// 		"w  w          w" +
+// 		"w  w www *    w" +
+// 		"w             w" +
+// 		"wwww          w" +
+// 		"w 0w          w" +
+// 		"w  d         ww" +
+// 		"wwwwwwwwwwwwww~"
+// }
+var BossFight04 = {
+	board_type: "lair",
+	height: 15,
+	width: 15,
+	tile_data:
+		"wwwwwwwwwwwwwww" +
+		"w@1 w        kw" +
+		"w 0 w         w" +
+		"wwwww         w" +
+		"~w            w" +
+		"~w    w  *    w" +
+		"~w            w" +
+		"~w    %       w" +
+		"~w            w" +
+		"~w    w  *    w" +
+		"~w            w" +
+		"wwwww         w" +
+		"w 0 w         w" +
+		"w   d         w" +
+		"wwwwwwwwwwwwwww"
+}
+
+
+
+var TeleporterMoversBlah = {
+	board_type: "lair",
+	height: 15,
+	width: 15,
+	tile_data:
+		"wwwwwww~wwwwwww" +
+		"w     w~w    0w" +
+		"w     w~w     w" +
+		"w     w~w     w" +
+		"w*   @w~w%   rw" +
+		"wwwwwdw~wwwwwdw" +
+		"w     w~w     w" +
+		"w     w~w     w" +
+		"w    pw~w    kw" +
+		"wdwwwww~w wwwww" +
+		"w    kw~w     w" +
+		"w     w~w     w" +
+		"w     w~w     w" +
+		"w0    w~wk    w" +
+		"wwwwwww~wwwwwww"
+}
+
+
+
+
+
+
+
+
+
+
+
+
 var BossKill = {
 	board_type: "lair",
 	height: 15,
@@ -1083,14 +1416,18 @@ var BossKill = {
 //start of act 1
 //hero and princess on the lamb, caught
 DungeonDashLevels.push(Chapter1);
+
 DungeonDashLevels.push(TwoMovesToExit);
 DungeonDashLevels.push(ThreeMovesToExit);
 DungeonDashLevels.push(MoveTeachMore);
+
 DungeonDashLevels.push(MoveTeachCrazySimpler);
 DungeonDashLevels.push(MoveTeachCrazyFlipped);
+
 DungeonDashLevels.push(CombatStart0);
 DungeonDashLevels.push(CombatStart3);
 DungeonDashLevels.push(CombatStart4);
+
 DungeonDashLevels.push(BossFight01);
 
 //end of act 1
@@ -1102,15 +1439,19 @@ DungeonDashLevels.push(BossFight01);
 //introduce keys and doors, fluency with red guys
 //swap from princess capture to hero capture?
 DungeonDashLevels.push(Chapter2);
+
 DungeonDashLevels.push(keyPrincessMoves);
 DungeonDashLevels.push(keyWithMobs);
 DungeonDashLevels.push(keyWithMobs2);
+
 DungeonDashLevels.push(princessTorture00);
 DungeonDashLevels.push(princessTorture01);
 DungeonDashLevels.push(princessTorture02);
+
 DungeonDashLevels.push(princessTorture03);
 DungeonDashLevels.push(princessTorture02FlippedIsh);
 DungeonDashLevels.push(princeTorture00);
+
 DungeonDashLevels.push(BossFight02);
 //end of act 2
 
@@ -1137,7 +1478,6 @@ DungeonDashLevels.push(RooksAndPawnsAndKeys00); //use monster to pickup key
 DungeonDashLevels.push(RooksAndPawnsAndKeys01); //use monster to pickup key and open door
 DungeonDashLevels.push(RooksAndPawnsAndKeys02); //use monster to pickup key, open door, so player can pickup second key
 
-// DungeonDashLevels.push(BossFight03);
 DungeonDashLevels.push(BossFight03);
 
 //end of act 3
@@ -1145,8 +1485,26 @@ DungeonDashLevels.push(BossFight03);
 
 //start of act 4
 DungeonDashLevels.push(Chapter4);
+
+DungeonDashLevels.push(TeleporterSymmetricalSwap);
 DungeonDashLevels.push(Teleporter00);
 DungeonDashLevels.push(Teleporter01);
+
+DungeonDashLevels.push(TeleporterEasyMobAndKey);
+DungeonDashLevels.push(TeleporterEasyMobAndKey02);
+DungeonDashLevels.push(TeleporterMobAndKey03);
+
+DungeonDashLevels.push(TeleporterMovers01);
+DungeonDashLevels.push(TeleporterMovers02);
+
+DungeonDashLevels.push(TeleporterMoversKeys00);
+// DungeonDashLevels.push(TeleporterMoversKeys01);
+//TODO: More movers/teleporters/keys levels
+
+
+DungeonDashLevels.push(TeleporterInfiniteGag);
+DungeonDashLevels.push(BossFight04);
+
 // DungeonDashLevels.push(BossKill);
 
 //end of act 4
