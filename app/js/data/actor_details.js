@@ -20,6 +20,7 @@ var ACTOR_TYPES = {
 				board.Win();
 			}else{
 				this_actor.attack(that_actor);
+				// board.CancelWin();
 			}
 		}
 
@@ -43,6 +44,7 @@ var ACTOR_TYPES = {
 				board.Win();
 			}else{
 				this_actor.attack(that_actor);
+				// board.CancelWin();
 			}
 		}
 	},

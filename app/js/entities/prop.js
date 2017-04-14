@@ -13,13 +13,21 @@ Prop = function(game, x, y, scale, p_type, color){
 		case "d":
 			this.prop_type = PROP_TYPES.door;
 			break;
+		case "D":
+			this.prop_type = PROP_TYPES.unlocked_door;
+			break;
 		case "0":
 			this.prop_type = PROP_TYPES.portal;
 			break;
 		case "*":
 			this.prop_type = PROP_TYPES.flame;
 			break;
-
+		case "_":
+			this.prop_type = PROP_TYPES.sticky;
+			break;
+		case "x":
+			this.prop_type = PROP_TYPES.deathOnLand;
+			break;
 	}
 	
 	this.scaleUpTween = this.game.add.tween(this.scale).to({ x: this.tile_scale * 2, y: this.tile_scale * 2}, 500, "Quart.easeOut");

@@ -179,13 +179,20 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 					block_found = true;
 				}
 				else{
-					//portals are special
-				 	if(neighbor.current_prop.prop_type == PROP_TYPES.portal){
-						var resulting_tile = neighbor.current_prop.prop_type.onEnter(this, neighbor.current_prop, this.board);
-						if(resulting_tile){
-							warp_list.push({"origin": neighbor, "destination": resulting_tile});
-						}
+					// //portals are special
+				 // 	if(neighbor.current_prop.prop_type == PROP_TYPES.portal){
+
+					// 	// var resulting_tile = neighbor.current_prop.prop_type.onEnter(this, neighbor.current_prop, this.board);
+					// 	// if(resulting_tile){
+					// 		// warp_list.push({"origin": neighbor, "destination": resulting_tile});
+					// 	// }
+					// }
+					if(neighbor.current_prop.prop_type.sticky){
+						target_block = neighbor;
+						block_found = true;
 					}
+
+
 
 					if(neighbor.current_prop.prop_type.onEnter){
 						neighbor.current_prop.prop_type.onEnter(this, neighbor.current_prop, this.board);
@@ -258,6 +265,13 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 
 				move_tween.onComplete.add(function(){
 
+
+					if(!that.isDead && target_block!=starting_tile){
+						if(target_block.current_prop && target_block.current_prop.prop_type.onLand){
+							target_block.current_prop.prop_type.onLand(that, target_block.current_prop, that.board);
+						}
+					}
+
 					if(that.isDead){
 						console.log('was dead, handling death later?')
 						that.HandleDeathLater();
@@ -266,12 +280,8 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 						attack_target.HandleDeathLater();
 					}
 
-					if(!that.isDead && target_block!=starting_tile){
-						if(target_block.current_prop && target_block.current_prop.prop_type.onLand){
-							target_block.current_prop.prop_type.onLand(that, target_block.current_prop, that.board);
-						}
-					}
 					that.board.CheckWin();
+
 
 				});
 				move_tween.start();
@@ -318,10 +328,9 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 							}
 	
 						}
-
-
-
 						that.board.CheckWin();
+
+
 					});
 
 				});
@@ -329,6 +338,7 @@ Actor.prototype.slide = function(x_dir, y_dir, resolved_callback){
 				move_tween.start();
 				if(resolved_callback!=null){
 					resolved_callback.call();
+
 				}
 
 
@@ -396,13 +406,7 @@ Actor.prototype.Blink = function(color){
 
 Actor.prototype.die = function(){
 	this.Blink();
-	for(var i = 0;i<this.held_items.length;i++){
-		var item = this.held_items[i];
-		this.board.addChild(item);
-		this.current_tile.current_pickup = item;
-		item.x = this.current_tile.x;
-		item.y = this.current_tile.y;
-	}
+
 
 	this.isDead = true;
 	if(this.board){
@@ -456,6 +460,13 @@ Actor.prototype.HandleDeathLater = function(amount){
 	this.body.angularVelocity = this.body.velocity.x;
 	this.body.angularDrag = 200;
 
+	for(var i = 0;i<this.held_items.length;i++){
+		var item = this.held_items[i];
+		this.board.addChild(item);
+		this.current_tile.current_pickup = item;
+		item.x = this.current_tile.x;
+		item.y = this.current_tile.y;
+	}
 
 	if(this.actor_type.onDeathCallback){
 		this.actor_type.onDeathCallback(this, this.board);

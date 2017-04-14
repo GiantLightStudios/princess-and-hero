@@ -11,6 +11,7 @@ Board = function(game, x, y, tile_scale, level_data_index){
 	this.scale_down = .93;
 	this.board_width = null;
 	this.board_height = null;
+	this.numSlides = 0;
 
 	this.board_model = new Backbone.Model();
 
@@ -142,7 +143,23 @@ Board.prototype.create = function() {
 					}
 					this.props.push(prop);
 					break;
-
+				//sticky
+				case "_":
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
+					prop.board = this;
+					this.add(prop);
+					prop.current_tile = this.GetTile(y,x);
+					prop.current_tile.current_prop = prop;
+					this.props.push(prop);
+					break;
+				case "x":
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
+					prop.board = this;
+					this.add(prop);
+					prop.current_tile = this.GetTile(y,x);
+					prop.current_tile.current_prop = prop;
+					this.props.push(prop);
+					break;
 				//wall
 				case "w":
 					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data, this.board_type.wall_color);
@@ -172,7 +189,15 @@ Board.prototype.create = function() {
 					prop.current_tile.current_prop = prop;
 					this.props.push(prop);
 					break;
-
+					
+				case "D":
+					var prop = new Prop(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
+					prop.board = this;
+					this.add(prop);
+					prop.current_tile = this.GetTile(y,x);
+					prop.current_tile.current_prop = prop;
+					this.props.push(prop);
+					break;
 				//pickups
 				case "h":
 					var pickup = new Pickup(this.game, new_tile.x, new_tile.y, this.tile_scale*this.scale_down, t_data);
@@ -382,7 +407,7 @@ Board.prototype.slide = function(x_dir, y_dir){
 	// 	}
 
 
-	this.numSlides = sortedActors.length;
+	this.numSlides += sortedActors.length;
 
 	for(var i = 0;i<sortedActors.length;i++){
 		// sortedActors[i].slide(x_dir, y_dir);
@@ -402,7 +427,7 @@ Board.prototype.slide = function(x_dir, y_dir){
 		})(a);
 
 	}
-	that.CheckWin();
+	// that.CheckWin();
 	DungeonDashGame.wait(
 		function(){return that.numSlides==0 },
 		function(){that.CheckWin()}
@@ -440,15 +465,19 @@ Board.prototype.CheckWin = function(){
 }
 
 Board.prototype.Win = function(){
-	var that = this;
-	that.player.canControl = false;
-	that.princess.canControl = false;
+	//this.player.canControl = false;
+	//this.princess.canControl = false;
 	this.has_won = true;
-
-
-
+	// this.CheckWin();
 
 }
+Board.prototype.CancelWin = function(){
+	//this.player.canControl = true;
+	//this.princess.canControl = true;
+	//this.has_won = false;
+
+}
+
 
 Board.prototype.resize = function(){
 	this.grunge.width = (this.game.width/this.parent.scale.x);
